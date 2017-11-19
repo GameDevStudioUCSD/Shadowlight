@@ -11,10 +11,15 @@ public class ShadowPlayerObject : PlayerObject {
         keyDown = KeyCode.S;
         keyLeft = KeyCode.A;
         keyRight = KeyCode.D;
+        Globals.shadowPlayer = this.gameObject;
     }
 	
 	// Update is called once per frame
 	protected override void Update () {
         base.Update();
 	}
+
+    public virtual void Die() {
+        //TODO
+    }
 }
