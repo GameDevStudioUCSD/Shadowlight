@@ -7,25 +7,28 @@ using System.Collections.Generic;
 
 public class CastLight : MonoBehaviour {
 
-    public float viewRadius;
+    public float viewRadius; //the distance the light is cast
     [Range(0, 360)]
-    public float viewAngle;
+    public float viewAngle; //the number of degrees the light goes out; set to 360 for all directions
 
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
+    public LayerMask targetMask; //the objects that detect being in the light
+    public LayerMask obstacleMask; //the objects that block light
 
     [HideInInspector]
-    public List<Transform> visibleTargets = new List<Transform>();
+    public List<Transform> visibleTargets = new List<Transform>(); //the list of objects that are in the light
 
-    public float meshResolution;
+    public float meshResolution; //increasing this improves corner recognition, but slows performance
     public int edgeResolveIterations;
     public float edgeDstThreshold;
 
-    public float maskCutawayDst = .1f;
+    public float maskCutawayDst = 0f; //the amount of the edge of obstacles that is shown; values other than 0 cause strange ground shadows
 
     public MeshFilter viewMeshFilter;
-    Mesh viewMesh;
+    Mesh viewMesh; //the light polygon created by the script
 
+    /**
+     * Creates the mesh object that represents the light
+     */
     void Start() {
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
@@ -34,7 +37,9 @@ public class CastLight : MonoBehaviour {
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 
-
+    /**
+     * Periodically identifies objects that are in the light
+     */
     IEnumerator FindTargetsWithDelay(float delay) {
         while (true) {
             yield return new WaitForSeconds(delay);
@@ -42,10 +47,16 @@ public class CastLight : MonoBehaviour {
         }
     }
 
+    /**
+     * Draws light after everything else has run
+     */
     void LateUpdate() {
         DrawFieldOfView();
     }
 
+    /**
+     * Identifies objects that are in the light
+     */
     void FindVisibleTargets() {
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
@@ -57,12 +68,16 @@ public class CastLight : MonoBehaviour {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) {
                     visibleTargets.Add(target);
+                    //IMPORTANT: Put code here to get objects to do something when in the light
                     if (target.GetComponent<ShadowPlayerObject>()) target.GetComponent<ShadowPlayerObject>().Die();
                 }
             }
         }
     }
 
+    /**
+     * Draws a polygon representing the light using raycasts to find the edges of objects that block light
+     */
     void DrawFieldOfView() {
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepAngleSize = viewAngle / stepCount;
@@ -76,6 +91,7 @@ public class CastLight : MonoBehaviour {
                 bool edgeDstThresholdExceeded = Mathf.Abs(oldViewCast.dst - newViewCast.dst) > edgeDstThreshold;
                 if (oldViewCast.hit != newViewCast.hit || (oldViewCast.hit && newViewCast.hit && edgeDstThresholdExceeded)) {
                     EdgeInfo edge = FindEdge(oldViewCast, newViewCast);
+                    //adds points to the border of the mesh
                     if (edge.pointA != Vector3.zero) {
                         viewPoints.Add(edge.pointA);
                     }
@@ -91,6 +107,7 @@ public class CastLight : MonoBehaviour {
             oldViewCast = newViewCast;
         }
 
+        //constructs the light's polygonal mesh
         int vertexCount = viewPoints.Count + 1;
         Vector3[] vertices = new Vector3[vertexCount];
         int[] triangles = new int[(vertexCount - 2) * 3];
@@ -113,7 +130,9 @@ public class CastLight : MonoBehaviour {
         viewMesh.RecalculateNormals();
     }
 
-
+    /**
+     * Identifies the edges of objects that block light
+     */
     EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast) {
         float minAngle = minViewCast.angle;
         float maxAngle = maxViewCast.angle;
@@ -138,7 +157,9 @@ public class CastLight : MonoBehaviour {
         return new EdgeInfo(minPoint, maxPoint);
     }
 
-
+    /**
+     * Uses raycasts to identify the objects that block light
+     */
     ViewCastInfo ViewCast(float globalAngle) {
         Vector3 dir = DirFromAngle(globalAngle, true);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask);

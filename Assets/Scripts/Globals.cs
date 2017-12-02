@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Globals : MonoBehaviour {
+/**
+ * Use to reference variables that many scripts will access
+ */
+public static class Globals {
 
-    public static GameObject lightPlayer;
-    public static GameObject shadowPlayer;
-    public static GameObject castLight;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static GameObject lightPlayer;  //the Light player controlled by Arrow Keys
+    public static GameObject shadowPlayer; //the Shadow player controlled by WASD
+    public static GameObject castLight;    //the primary light given off by the Light player
 }
