@@ -10,7 +10,7 @@
 		ColorMask 0
 		ZWrite off
 		LOD 200
-
+		
 		Stencil{
 			Ref 2401
 			Pass replace

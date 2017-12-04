@@ -1,4 +1,5 @@
-﻿Shader "Custom/ShadowStencil" {
+﻿Shader "Custom/VisibleStencil" {
+
     Properties {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
@@ -11,9 +12,9 @@
 
     SubShader {
         Tags {
-            "Queue"="Transparent"
+            "Queue"="Transparent+1"
             "IgnoreProjector"="True"
-            "RenderType"="Transparent"
+            "RenderType"="Opaque"
             "PreviewType"="Plane"
             "CanUseSpriteAtlas"="True"
         }
@@ -25,7 +26,7 @@
 		
 		Stencil {
 			Ref 2401
-			Comp notequal
+			Pass replace
 		}
 
         Pass {
