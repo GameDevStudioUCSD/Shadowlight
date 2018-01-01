@@ -10,8 +10,8 @@ public class LevelSwitchController : MonoBehaviour {
   public GameObject lightPlayer;
   public GameObject shadowPlayer;
 
-  private Vector3 lightDoorPos;
-  private Vector3 shadowDoorPos;
+  private Bounds lightDoorBounds;
+  private Bounds shadowDoorBounds;
 
   // Use this for initialization
   void Start() {
@@ -19,17 +19,20 @@ public class LevelSwitchController : MonoBehaviour {
     // Get the position of door objects
     GameObject lightDoor = GameObject.FindWithTag("LightDoor");
     GameObject shadowDoor = GameObject.FindWithTag("ShadowDoor");
-    lightDoorPos = lightDoor.transform.position;
-    shadowDoorPos = shadowDoor.transform.position;
+    lightDoorBounds = lightDoor.GetComponent<Collider2D>().bounds;
+    shadowDoorBounds = shadowDoor.GetComponent<Collider2D>().bounds;
   }
   
   void LateUpdate() {
-
-    // Repeatedly check if player object's rectangle contains door position
-    if (lightPlayer.GetComponent<Collider2D>().bounds.Contains(lightDoorPos)
-      && shadowPlayer.GetComponent<Collider2D>().bounds.Contains(shadowDoorPos) ) {
+    Bounds lightPlayerBounds = lightPlayer.GetComponent<Collider2D>().bounds;
+    Bounds shadowPlayerBounds = shadowPlayer.GetComponent<Collider2D>().bounds;
+    
+    // 
+    if (lightDoorBounds.Contains(lightPlayerBounds.min) 
+      && lightDoorBounds.Contains(lightPlayerBounds.max)
+      && shadowDoorBounds.Contains(shadowPlayerBounds.min) 
+      && shadowDoorBounds.Contains(shadowPlayerBounds.max)) {
       SceneManager.LoadScene(nextScene);
     }
-
   }
 }
