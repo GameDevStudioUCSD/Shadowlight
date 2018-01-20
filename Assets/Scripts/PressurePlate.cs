@@ -3,22 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour {
-	public bool pressurePlateOn;
-	// Use this for initialization
-	void Start () {
-		
-	}
+	
+	public bool pressed = false;
 
 	void OnTriggerEnter(Collider other) {
-		pressurePlateOn = true;
-		//some kind of animation ?
+		pressed = true;
+		// TODO 2018-01-20: some kind of animation ?
 	}
 
 	void OnTriggerExit(Collider other) {
-		pressurePlateOn = false;
-	}
-	// Update is called once per frame
-	void Update () {
-		
+		pressed = false;
 	}
 }
