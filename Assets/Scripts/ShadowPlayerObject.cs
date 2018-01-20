@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShadowPlayerObject : PlayerObject {
 
@@ -29,5 +30,6 @@ public class ShadowPlayerObject : PlayerObject {
      */
     public virtual void Die() {
         //TODO
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

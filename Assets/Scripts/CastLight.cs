@@ -62,7 +62,7 @@ public class CastLight : MonoBehaviour {
      */
     void FindVisibleTargets() {
         visibleTargets.Clear();
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++) {
             Transform target = targetsInViewRadius[i].transform;
@@ -73,6 +73,7 @@ public class CastLight : MonoBehaviour {
                     visibleTargets.Add(target);
                     //IMPORTANT: Put code here to get objects to do something when in the light
                     if (target.GetComponent<ShadowPlayerObject>()) target.GetComponent<ShadowPlayerObject>().Die();
+                 
                 }
             }
         }
