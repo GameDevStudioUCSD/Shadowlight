@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Darkness
+  - LightDoor
+  - ShadowDoor
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - Shadow Player
+  - Triggered By Light
   - 
   - 
   - 

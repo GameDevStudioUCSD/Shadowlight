@@ -72,6 +72,7 @@ public class CastLight : MonoBehaviour {
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) {
                     visibleTargets.Add(target);
                     //IMPORTANT: Put code here to get objects to do something when in the light
+                    if (target.GetComponent<Mirror>() && target.gameObject != this.gameObject) target.GetComponent<Mirror>().Activate(this);
                     if (target.GetComponent<ShadowPlayerObject>()) target.GetComponent<ShadowPlayerObject>().Die();
                  
                 }
@@ -88,7 +89,7 @@ public class CastLight : MonoBehaviour {
         List<Vector3> viewPoints = new List<Vector3>();
         ViewCastInfo oldViewCast = new ViewCastInfo();
         for (int i = 0; i <= stepCount; i++) {
-            float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
+            float angle = 360 - transform.eulerAngles.z - viewAngle / 2 + stepAngleSize * i;
             ViewCastInfo newViewCast = ViewCast(angle);
 
             if (i > 0) {
