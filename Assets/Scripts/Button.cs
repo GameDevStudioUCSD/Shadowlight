@@ -10,7 +10,7 @@ public class Button : MonoBehaviour {
 	public bool pushed = false;
 
 	//TODO 2018-01-20 connect this to circuit ? just a trigger for now
-	    void OnTriggerEnter(Collider other) {
+	    void OnTriggerEnter2D(Collider other) {
 			//some animation 
 		    pushed = true;
 		}
