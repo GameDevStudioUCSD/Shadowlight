@@ -67,14 +67,15 @@ public class CastLight : MonoBehaviour {
         for (int i = 0; i < targetsInViewRadius.Length; i++) {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2) {
+            if (Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2) {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-                    visibleTargets.Add(target);
-                    //IMPORTANT: Put code here to get objects to do something when in the light
-                    if (target.GetComponent<Mirror>() && target.gameObject != this.gameObject) target.GetComponent<Mirror>().Activate(this);
-                    if (target.GetComponent<ShadowPlayerObject>()) target.GetComponent<ShadowPlayerObject>().Die();
-                 
+                    if (isActiveAndEnabled) {
+                        visibleTargets.Add(target);
+                        //IMPORTANT: Put code here to get objects to do something when in the light
+                        if (target.GetComponent<Mirror>() && target.gameObject != this.gameObject) target.GetComponent<Mirror>().Activate(this);
+                        if (target.GetComponent<ShadowPlayerObject>()) target.GetComponent<ShadowPlayerObject>().Die();
+                    }
                 }
             }
         }
