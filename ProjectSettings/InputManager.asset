@@ -11,8 +11,8 @@ InputManager:
     descriptiveNegativeName: Light Left
     negativeButton: left
     positiveButton: right
-    altNegativeButton:
-    altPositiveButton:
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -22,20 +22,20 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Light Vertical
-    descriptiveName: Light Up
-    descriptiveNegativeName: Light Down
-    negativeButton: down
+    m_Name: Light Jump
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
     positiveButton: up
-    altNegativeButton:
-    altPositiveButton:
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 1
+    snap: 0
     invert: 0
     type: 0
-    axis: 0
+    axis: 1
     joyNum: 1
   - serializedVersion: 3
     m_Name: Shadow Horizontal
@@ -43,8 +43,8 @@ InputManager:
     descriptiveNegativeName: Shadow Left
     negativeButton: a
     positiveButton: d
-    altNegativeButton:
-    altPositiveButton:
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -54,18 +54,18 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Shadow Vertical
-    descriptiveName: Shadow Up
-    descriptiveNegativeName: Shadow Down
-    negativeButton: s
+    m_Name: Shadow Jump
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
     positiveButton: w
-    altNegativeButton:
-    altPositiveButton:
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 1
+    snap: 0
     invert: 0
     type: 0
-    axis: 0
+    axis: 1
     joyNum: 2
