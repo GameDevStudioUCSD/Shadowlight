@@ -6,12 +6,12 @@ public class PressurePlate : MonoBehaviour {
 	
 	public bool pressed = false;
 
-	void OnTriggerEnter(Collider other) {
+	void OnTriggerEnter2D(Collider2D other) {
 		pressed = true;
 		// TODO 2018-01-20: some kind of animation ?
 	}
 
-	void OnTriggerExit(Collider other) {
+	void OnTriggerExit2D(Collider2D other) {
 		pressed = false;
 	}
 }
