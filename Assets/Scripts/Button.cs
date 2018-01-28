@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Button : MonoBehaviour {
 
-	//similar to pressure plate ?
-	//but pressure plate needs continuous contact - has trigger exit function
 
 	public bool pushed = false;
 
-	//TODO 2018-01-20 connect this to circuit ? just a trigger for now
+	public Sprite unpushedSprite = null;
+	public Sprite pushedSprite = null;
+
+	private SpriteRenderer renderer;
+
+	private void Start() {
+		renderer = GetComponent<SpriteRenderer> ();
+	    renderer.sprite = unpushedSprite;
+
+	    }
+		
 	    void OnTriggerEnter2D(Collider2D other) {
-			//some animation 
+			 
 		    pushed = true;
+		    renderer.sprite = pushedSprite;
 		}
 		
 }
