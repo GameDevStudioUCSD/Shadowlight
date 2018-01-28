@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114253263501350628}
   - component: {fileID: 50576743581731070}
   - component: {fileID: 61245655297298238}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,12 +117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6c80f44c0e844aaa6fdcc75cbc442f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnOption1:
+  leftOption:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  OnOption2:
+  rightOption:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
