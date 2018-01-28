@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Lever : MonoBehaviour {
-    public UnityEvent OnOption1;
-    public UnityEvent OnOption2;
+    public UnityEvent leftOption;
+    public UnityEvent rightOption;
     private bool left;
     private Animator animator;
     private bool inRange;
@@ -19,7 +19,7 @@ public class Lever : MonoBehaviour {
 
     private void Start()
     {
-        OnOption1.Invoke();
+        leftOption.Invoke();
     }
 
     private void FixedUpdate()
@@ -36,12 +36,12 @@ public class Lever : MonoBehaviour {
         if(left)
         {
             
-            OnOption2.Invoke();
+            rightOption.Invoke();
             animator.Play("ToggleRight");
         }
         else
         {
-            OnOption1.Invoke();
+            leftOption.Invoke();
             animator.Play("ToggleLeft");
         }
         left = !left;
