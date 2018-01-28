@@ -18,7 +18,6 @@ public class LightPlayerObject : PlayerObject {
 
         //assign Global variables
         Globals.lightPlayer = this.gameObject;
-        Globals.castLight = castLight;
 	}
 	
 	// Update is called once per frame

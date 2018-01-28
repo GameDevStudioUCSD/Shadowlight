@@ -1010,7 +1010,7 @@ MonoBehaviour:
     m_Bits: 768
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 4294966523
+    m_Bits: 4294966779
   visibleTargets: []
   meshResolution: 5
   edgeResolveIterations: 4
@@ -1152,6 +1152,11 @@ Prefab:
     - target: {fileID: 4953927017104782, guid: 41e670ba0ec4e2d40b13a244aef16801, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114300258208375740, guid: 41e670ba0ec4e2d40b13a244aef16801,
+        type: 2}
+      propertyPath: obstacleMask.m_Bits
+      value: 4294966779
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41e670ba0ec4e2d40b13a244aef16801, type: 2}

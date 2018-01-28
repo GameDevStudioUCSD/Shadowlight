@@ -69,12 +69,16 @@ public class CastLight : MonoBehaviour {
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2) {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) {
+                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)
+                    || Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask).collider.transform == target) {
                     if (isActiveAndEnabled) {
                         visibleTargets.Add(target);
                         //IMPORTANT: Put code here to get objects to do something when in the light
-                        if (target.GetComponent<Mirror>() && target.gameObject != this.gameObject) target.GetComponent<Mirror>().Activate(this);
-                        if (target.GetComponent<ShadowPlayerObject>()) target.GetComponent<ShadowPlayerObject>().Die();
+                        if ((target.GetComponent<Mirror>() && target.GetComponent<Mirror>().gameObject != this.gameObject) //prevents mirrors from keeping themselves active
+                            || (target.GetComponentInParent<Mirror>() && target.GetComponentInParent<Mirror>().gameObject != this.gameObject))
+                            target.GetComponentInParent<Mirror>().Activate(this); //turns mirror light on
+                        if (target.GetComponent<ShadowPlayerObject>())
+                            target.GetComponent<ShadowPlayerObject>().Die(); //game over
                     }
                 }
             }
@@ -168,7 +172,7 @@ public class CastLight : MonoBehaviour {
         Vector3 dir = DirFromAngle(globalAngle, true);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask);
 
-        if (hit) {
+        if (hit && hit.transform != this.transform) {
             return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         }
         else {
