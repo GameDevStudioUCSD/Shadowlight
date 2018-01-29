@@ -2,24 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
+
+[RequireComponent(typeof(Animator))]
 
 public class Lever : MonoBehaviour {
-    public UnityEvent leftOption;
-    public UnityEvent rightOption;
+    public UnityEvent leftMode;
+    public UnityEvent rightMode;
     private bool left;
     private Animator animator;
     private bool inRange;
 
-    void Awake()
+    private void Start()
     {
         left = true;
         inRange = false;
-        animator = gameObject.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        Assert.IsNotNull(animator);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        leftOption.Invoke();
+        if (left)
+        {
+            leftMode.Invoke();
+        }
+        else
+        {
+            rightMode.Invoke();
+        }
     }
 
     private void FixedUpdate()
@@ -36,12 +47,12 @@ public class Lever : MonoBehaviour {
         if(left)
         {
             
-            rightOption.Invoke();
+            rightMode.Invoke();
             animator.Play("ToggleRight");
         }
         else
         {
-            leftOption.Invoke();
+            leftMode.Invoke();
             animator.Play("ToggleLeft");
         }
         left = !left;
@@ -50,11 +61,17 @@ public class Lever : MonoBehaviour {
     // Because OnTriggerStay2D was only being called when collider was moving
     void OnTriggerEnter2D(Collider2D other)
     {
-        inRange = true;
+        if (other.tag == "Player")
+        {
+            inRange = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        inRange = false;
+        if (other.tag == "Player")
+        {
+            inRange = false;
+        }
     }
 }
