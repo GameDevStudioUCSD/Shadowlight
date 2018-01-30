@@ -3,26 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Assertions;
-[RequireComponent(typeof(Animator))]
 
 /**
  *  Class for controlling an interactable lever object. Has left and right
  *  states where either state is always toggled, and each one is associated
  *  with an event. On interaction, the current state changes to the other one.
  */
+[RequireComponent(typeof(Animator))]
 public class Lever : MonoBehaviour {
     public UnityEvent leftMode;
     public UnityEvent rightMode;
-    private bool left;
     private Animator animator;
-    private bool inRange;
+    private bool left = true;
+    private bool inRange = false;
 
     private void Start()
     {
-        left = true;
-        inRange = false;
         animator = GetComponent<Animator>();
-        // Should not be null because of [RequireComponent(typeof(Animator))]
+        // Should not be null because of the RequireComponent attribute
         Assert.IsNotNull(animator, name + " requires an Animator component.");
     }
 
