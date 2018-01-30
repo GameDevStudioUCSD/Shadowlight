@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 1674969608}
   m_Layer: 2
   m_Name: LightPlayer
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,7 +1156,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1251655762403356, guid: 41e670ba0ec4e2d40b13a244aef16801, type: 2}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41e670ba0ec4e2d40b13a244aef16801, type: 2}
@@ -1273,7 +1273,7 @@ GameObject:
   - component: {fileID: 2081445646}
   m_Layer: 8
   m_Name: ShadowPlayer
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

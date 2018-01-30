@@ -42,7 +42,7 @@ public class Lever : MonoBehaviour {
     private void Update()
     {
         // Player must be in range to interact with the lever
-        // TODO: Change to interact button
+        // TODO 2018-01-29: Change to interact button
         if (inRange == true && Input.GetKeyDown("q"))
         {
             Toggle();
