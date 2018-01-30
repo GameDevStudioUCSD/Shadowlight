@@ -11,16 +11,16 @@ using UnityEngine.Assertions;
  */
 [RequireComponent(typeof(Animator))]
 public class Lever : MonoBehaviour {
-    public UnityEvent leftMode;
-    public UnityEvent rightMode;
-    private Animator animator;
+    public UnityEvent leftMode = null;
+    public UnityEvent rightMode = null;
+    private Animator animator = null;
     private bool left = true;
     private bool inRange = false;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        // Should not be null because of the RequireComponent attribute
+        // Should not be null because of the RequireComponent attribute.
         Assert.IsNotNull(animator, name + " requires an Animator component.");
     }
 
@@ -56,7 +56,7 @@ public class Lever : MonoBehaviour {
         // If toggled left, switch to right
         if(left)
         {
-            
+
             rightMode.Invoke();
             animator.Play("ToggleRight");
         }
