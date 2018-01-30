@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -184,7 +183,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &424902919
 GameObject:
@@ -784,7 +783,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4086105214209844, guid: 5fd1d28429411c1408fd6a5d77765895, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fd1d28429411c1408fd6a5d77765895, type: 2}
@@ -1011,7 +1010,7 @@ MonoBehaviour:
     m_Bits: 768
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 4294966523
+    m_Bits: 4294966779
   visibleTargets: []
   meshResolution: 5
   edgeResolveIterations: 4
@@ -1154,9 +1153,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1251655762403356, guid: 41e670ba0ec4e2d40b13a244aef16801, type: 2}
-      propertyPath: m_TagString
-      value: Untagged
+    - target: {fileID: 114300258208375740, guid: 41e670ba0ec4e2d40b13a244aef16801,
+        type: 2}
+      propertyPath: obstacleMask.m_Bits
+      value: 4294966779
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 41e670ba0ec4e2d40b13a244aef16801, type: 2}
@@ -1443,7 +1443,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
