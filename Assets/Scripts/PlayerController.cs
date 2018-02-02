@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour {
   public float horizontalSpeed = 1.0f;
 
   // The strength of the character's jump
-  public float jumpForce = 5f;
+  public float jumpForce = 5.0f;
 
   // How rapidly the character should fall
-  public float fallMulti = 2f;
+  public float fallMulti = 1.1f;
 
   // How varied the character's jumps could be
-  public float jumpMulti = 2f;
+  public float jumpMulti = 2.0f;
 
   // The layers that make up the ground (currently set to Default)
   public LayerMask groundLayer;
@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour {
     Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
     Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
 
+    //Set groundLayer to default
+    groundLayer = 1 << LayerMask.NameToLayer("Default");
+
   }
 
   private void Update() {
@@ -54,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 
     // Jump Movement
     // TODO 2018-01-29: Add friction to jump
-    // Once player jumps forward, they should not be allowed to move backwards freely in air
+    // Add a feeling of inertia
     if (Input.GetButtonDown(inputJump)) {
       tmpVelocity.y = Jump();
     }
@@ -72,7 +75,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   /** Checks if there is ground underneath the object*/
-  bool IsGrounded() {
+  private bool IsGrounded() {
 
     // Casts a ray from the center of the object downward to check for ground
     Vector2 position = transform.position;
@@ -82,7 +85,6 @@ public class PlayerController : MonoBehaviour {
 
     // TODO 2018-02-01: Make Raycast work with sloped surfaces
     RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-    Debug.DrawRay(position, direction, Color.blue);
     if (hit.collider != null) {
       return true;
     }
@@ -90,12 +92,11 @@ public class PlayerController : MonoBehaviour {
   }
 
   /** Handles the character jumping (Checks if grounded)*/
-  float Jump() {
+  private float Jump() {
 
     if (!IsGrounded()) {
-      return 0;
+      return 0.0f;
     }
     return jumpForce;
-    }
   }
 }
