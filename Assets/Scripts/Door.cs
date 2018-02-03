@@ -9,8 +9,6 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(Animator))]
 public class Door : MonoBehaviour
 {
-    public UnityEvent onOpen;
-    public UnityEvent onClose;
     private Animator animator = null;
     private bool open = false;
 
@@ -21,18 +19,37 @@ public class Door : MonoBehaviour
         Assert.IsNotNull(animator, name + " requires an Animator component.");
     }
 
+    /**
+     * Opens door.
+     */
     public void Open()
     {
-        open = true;
-        onOpen.Invoke();
+        // Door can only open if it is already closed
+        if (!open)
+        {
+            open = true;
+            animator.Play("Open");
+            Debug.Log("opening");
+        }
     }
 
+
+    /**
+     * Closes door.
+     */
     public void Close()
     {
-        open = false;
-        onClose.Invoke();
+        // Door can only close if it is already open
+        if (open)
+        {
+            open = false;
+            animator.Play("Close");
+        }
     }
 
+    /**
+     * Opens door if closed, closes door if opened.
+     */
     public void Switch()
     {
         if (open)

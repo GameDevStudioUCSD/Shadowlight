@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61917219189879774}
   - component: {fileID: 95641525626258714}
   - component: {fileID: 114987928574004292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LightDoor
   m_TagString: LightDoor
   m_Icon: {fileID: 0}
@@ -106,7 +106,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  id: 0
 --- !u!212 &212102214715764790
 SpriteRenderer:
   m_ObjectHideFlags: 1
