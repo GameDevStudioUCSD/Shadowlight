@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4776375151187404}
   - component: {fileID: 212102214715764790}
   - component: {fileID: 61917219189879774}
+  - component: {fileID: 95641525626258714}
+  - component: {fileID: 114987928574004292}
   m_Layer: 0
   m_Name: LightDoor
   m_TagString: LightDoor
@@ -66,6 +68,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 4}
   m_EdgeRadius: 0
+--- !u!95 &95641525626258714
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249801085365192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe4b42e108d934b0f855aaf4196fc1e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114987928574004292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249801085365192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fd7afbfb561478fb179bf966b509af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onOpen:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onClose:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  id: 0
 --- !u!212 &212102214715764790
 SpriteRenderer:
   m_ObjectHideFlags: 1
