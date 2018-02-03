@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using System.Collections;
-using UnityEngine.Assertions;
 
 /**
  * Class for a door that can open and close.
@@ -29,7 +29,6 @@ public class Door : MonoBehaviour
         {
             open = true;
             animator.Play("Open");
-            Debug.Log("opening");
         }
     }
 
