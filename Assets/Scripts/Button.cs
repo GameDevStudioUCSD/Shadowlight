@@ -1,27 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Button : MonoBehaviour {
 
-
 	public bool pushed = false;
+	public UnityEvent buttonPressed = null;
 
 	public Sprite unpushedSprite = null;
 	public Sprite pushedSprite = null;
 
-	private SpriteRenderer renderer;
+	private new SpriteRenderer renderer = null;
 
 	private void Start() {
 		renderer = GetComponent<SpriteRenderer> ();
+		Assert.IsNotNull(renderer, name + " should have SpriteRenderer");
 	    renderer.sprite = unpushedSprite;
 
-	    }
-		
-	    void OnTriggerEnter2D(Collider2D other) {
-			 
-		    pushed = true;
-		    renderer.sprite = pushedSprite;
-		}
-		
+    }
+	
+    private void OnTriggerEnter2D(Collider2D other) {
+		pushed = true;
+		buttonPressed.Invoke ();
+
+	    renderer.sprite = pushedSprite;
+	}
 }
