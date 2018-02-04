@@ -21,12 +21,6 @@ public class PlayerController : MonoBehaviour {
   // The strength of the character's jump
   public float jumpForce = 5.0f;
 
-  // How rapidly the character should fall
-  public float fallMulti = 1.1f;
-
-  // How varied the character's jumps could be
-  public float jumpMulti = 2.0f;
-
   // The layers that make up the ground (currently set to Default)
   public LayerMask groundLayer;
 
@@ -75,14 +69,6 @@ public class PlayerController : MonoBehaviour {
         tmpVelocity.y = jumpForce;
         am.SetTrigger("jump");
       }
-    }
-
-    if (tmpVelocity.y < 0) {
-      tmpVelocity.y += Physics2D.gravity.y * (fallMulti) * Time.deltaTime;
-    }
-    // Character's jump is based on how long the jump button is held down for
-    else if (tmpVelocity.y > 0 && !Input.GetButton(inputJump)) {
-      tmpVelocity.y += Physics2D.gravity.y * (jumpMulti) * Time.deltaTime;
     }
 
     am.SetBool("moving", tmpVelocity.x != 0);
