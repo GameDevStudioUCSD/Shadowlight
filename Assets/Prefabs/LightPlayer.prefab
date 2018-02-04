@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114728715886641492}
   - component: {fileID: 212083217711134536}
   - component: {fileID: 61048722381212142}
+  - component: {fileID: 95011867005735956}
   m_Layer: 2
   m_Name: LightPlayer
   m_TagString: Untagged
@@ -161,6 +162,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 1.28}
   m_EdgeRadius: 0
+--- !u!95 &95011867005735956
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836284607839486}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88aeaf89f4fa6be4893096d06db36aa3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114533911197349788
 MonoBehaviour:
   m_ObjectHideFlags: 1

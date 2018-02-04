@@ -4,7 +4,7 @@ using UnityEngine;
 /**
  * Responsible for listening to inputs and moving the character.
  */
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator), typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
 
   // See Edit -> Project Settings -> Input for the input configuration.
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
   public string inputJump = "";
 
   // How fast should the character move horizontally.
-  public float horizontalSpeed = 1.0f;
+  public float horizontalSpeed = 5.0f;
 
   // The strength of the character's jump
   public float jumpForce = 5.0f;
@@ -31,10 +31,14 @@ public class PlayerController : MonoBehaviour {
   public LayerMask groundLayer;
 
   private Rigidbody2D rb2d = null;
+  private Animator am = null;
+  private SpriteRenderer sr = null;
 
   private void Start() {
 
     rb2d = GetComponent<Rigidbody2D>();
+    am = GetComponent<Animator>();
+    sr = GetComponent<SpriteRenderer>();
     // Since we have the RequireComponent, this should never happen.
     Debug.Assert(rb2d != null, "PlayerController: Needs Rigidbody2D.", this);
 
@@ -55,14 +59,24 @@ public class PlayerController : MonoBehaviour {
     // TODO 2018-01-20: Maybe we can do gradual acceleration movement.
     tmpVelocity.x = Input.GetAxis(inputHorizontal) * horizontalSpeed;
 
+    // Flip the sprite if the velocity changes
+    if (tmpVelocity.x < 0) {
+      sr.flipX = true;
+    }
+    else if (tmpVelocity.x > 0) {
+      sr.flipX = false;
+    }
+
     // Jump Movement
     // TODO 2018-01-29: Add friction to jump
     // Add a feeling of inertia
     if (Input.GetButtonDown(inputJump)) {
-      tmpVelocity.y = Jump();
+      if (IsGrounded()) {
+        tmpVelocity.y = jumpForce;
+        am.SetTrigger("jump");
+      }
     }
 
-    // Character falls faster than it jump
     if (tmpVelocity.y < 0) {
       tmpVelocity.y += Physics2D.gravity.y * (fallMulti) * Time.deltaTime;
     }
@@ -70,6 +84,9 @@ public class PlayerController : MonoBehaviour {
     else if (tmpVelocity.y > 0 && !Input.GetButton(inputJump)) {
       tmpVelocity.y += Physics2D.gravity.y * (jumpMulti) * Time.deltaTime;
     }
+
+    am.SetBool("moving", tmpVelocity.x != 0);
+    am.SetFloat("yVelocity", tmpVelocity.y);
 
     rb2d.velocity = tmpVelocity;
   }
@@ -89,14 +106,5 @@ public class PlayerController : MonoBehaviour {
       return true;
     }
     return false;
-  }
-
-  /** Handles the character jumping (Checks if grounded)*/
-  private float Jump() {
-
-    if (!IsGrounded()) {
-      return 0.0f;
-    }
-    return jumpForce;
   }
 }
