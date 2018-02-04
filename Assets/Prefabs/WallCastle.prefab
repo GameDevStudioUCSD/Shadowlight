@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4034918209470652}
   - component: {fileID: 212030477738227600}
   - component: {fileID: 61058433799504630}
+  - component: {fileID: 114787116908330944}
   m_Layer: 0
   m_Name: WallCastle
   m_TagString: Untagged
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &114787116908330944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1672440000546050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c074afacdaf75014fa83f0ae56b133e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 1.2, y: 1.2}
 --- !u!212 &212030477738227600
 SpriteRenderer:
   m_ObjectHideFlags: 1
