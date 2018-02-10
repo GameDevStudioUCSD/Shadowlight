@@ -30,6 +30,6 @@ public class ShadowPlayerObject : PlayerObject {
      */
     public virtual void Die() {
         //TODO
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

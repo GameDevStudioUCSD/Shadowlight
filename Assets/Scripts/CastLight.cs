@@ -170,14 +170,13 @@ public class CastLight : MonoBehaviour {
      */
     ViewCastInfo ViewCast(float globalAngle) {
         Vector3 dir = DirFromAngle(globalAngle, true);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, dir, viewRadius, obstacleMask);
 
-        if (hit && hit.transform != this.transform) {
-            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+        foreach (RaycastHit2D hit in hits) {
+            if (hit.transform == this.transform) continue;
+            if (hit) return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         }
-        else {
-            return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
-        }
+        return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
