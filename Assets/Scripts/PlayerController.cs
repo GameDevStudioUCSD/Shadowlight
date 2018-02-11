@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /**
  * Responsible for listening to inputs and moving the character.
@@ -93,4 +94,16 @@ public class PlayerController : MonoBehaviour {
     }
     return false;
   }
+
+
+    /**
+     * Called when the Shadow player touches the light.
+     * Should cause a game over, but is currently TODO.
+     */
+    public virtual void Die() {
+        if (inputHorizontal == "Shadow Horizontal") {
+            //TODO
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 }
