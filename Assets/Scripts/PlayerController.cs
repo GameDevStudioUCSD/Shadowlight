@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
   public float horizontalSpeed = 5.0f;
 
   // The strength of the character's jump
-  public float jumpForce = 5.0f;
+  public float jumpForce = 7.0f;
 
   // The layers that make up the ground (currently set to Default)
   public LayerMask groundLayer;
@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour {
     Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
     Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
 
-    //Set groundLayer to default
-    groundLayer = 1 << LayerMask.NameToLayer("Default");
+    //Set groundLayer to all layers except for Ignore Raycast
+    groundLayer = ~(1 << LayerMask.NameToLayer("Ignore Raycast"));
 
   }
 
@@ -81,15 +81,21 @@ public class PlayerController : MonoBehaviour {
   /** Checks if there is ground underneath the object*/
   private bool IsGrounded() {
 
-    // Casts a ray from the center of the object downward to check for ground
+    // Casts rays from the center of the object downward to check for ground
     Vector2 position = transform.position;
     Vector2 direction = Vector2.down;
     // The ray's length is slightly longer than half the size of the object
-    float distance = (GetComponent<BoxCollider2D>().bounds.size.y / 2) + 0.02f;
+    float length = (GetComponent<BoxCollider2D>().bounds.size.y / 2) + 0.02f;
+    // Offset the left and right rays by half of the character's size
+    float offset = (GetComponent<BoxCollider2D>().bounds.size.x / 2) - 0.01f;
 
-    // TODO 2018-02-01: Make Raycast work with sloped surfaces
-    RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-    if (hit.collider != null) {
+    Vector2 temp = new Vector2(offset, 0);
+
+    // Cast three rays to check for ground collision
+    RaycastHit2D hitCenter = Physics2D.Raycast(position, direction, length, groundLayer);
+    RaycastHit2D hitRight = Physics2D.Raycast(position + temp, direction, length, groundLayer);
+    RaycastHit2D hitLeft = Physics2D.Raycast(position - temp, direction, length, groundLayer);
+    if (hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null) {
       return true;
     }
     return false;
