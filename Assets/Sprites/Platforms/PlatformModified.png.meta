@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 369f9ac34500bc941a06d8465f438656
 timeCreated: 1517701318
+=======
+guid: 7c1e9b413d7e392428567957ffde68c5
+timeCreated: 1517789787
+>>>>>>> light-art
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -42,7 +47,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
+<<<<<<< HEAD
   spriteMeshType: 0
+=======
+  spriteMeshType: 1
+>>>>>>> light-art
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -65,6 +74,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -92,6 +102,8 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+=======
+>>>>>>> light-art
   spriteSheet:
     serializedVersion: 2
     sprites: []

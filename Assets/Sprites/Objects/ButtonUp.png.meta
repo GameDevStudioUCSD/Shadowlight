@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b9c1de931c1ce4658aede829c5574363
 timeCreated: 1517094525
+=======
+guid: a853445a474874e4cb148f5b4a9d171e
+timeCreated: 1517789787
+>>>>>>> light-art
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

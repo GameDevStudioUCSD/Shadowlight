@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f4cf35c5122f04d41ae138822e13bd0b
 timeCreated: 1517701321
+=======
+guid: aff3ffac47a373844ba9893bd6833237
+timeCreated: 1517789787
+>>>>>>> light-art
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -65,6 +70,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -92,6 +98,8 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+=======
+>>>>>>> light-art
   spriteSheet:
     serializedVersion: 2
     sprites: []
