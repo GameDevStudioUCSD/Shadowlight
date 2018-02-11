@@ -933,8 +933,8 @@ GameObject:
   m_PrefabParentObject: {fileID: 1866201452982620, guid: 5fd1d28429411c1408fd6a5d77765895,
     type: 2}
   m_PrefabInternal: {fileID: 1624066313}
---- !u!60 &1550803713
-PolygonCollider2D:
+--- !u!70 &1550803711
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -945,61 +945,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 1.5}
-    newSize: {x: 1.5, y: 3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.13, y: -0.41}
-      - {x: 0.51, y: -0.38}
-      - {x: 0.76, y: -0.32999998}
-      - {x: 0.95, y: -0.26}
-      - {x: 1.02, y: -0.32999998}
-      - {x: 1.1899999, y: -0.28}
-      - {x: 1.2099999, y: -0.17999999}
-      - {x: 1.13, y: -0.16}
-      - {x: 1.23, y: -0.07}
-      - {x: 1.28, y: 0.01}
-      - {x: 1.28, y: 0.07}
-      - {x: 1.25, y: 0.12}
-      - {x: 1.2099999, y: 0.16}
-      - {x: 1.12, y: 0.22}
-      - {x: 1.15, y: 0.31}
-      - {x: 1.1, y: 0.38}
-      - {x: 1, y: 0.41}
-      - {x: 0.90999997, y: 0.32999998}
-      - {x: 0.66999996, y: 0.39999998}
-      - {x: 0.34, y: 0.45}
-      - {x: -0.13, y: 0.45}
-      - {x: -0.44, y: 0.42}
-      - {x: -0.58, y: 0.39}
-      - {x: -0.78, y: 0.42}
-      - {x: -0.95, y: 0.38}
-      - {x: -1.01, y: 0.32}
-      - {x: -0.91999996, y: 0.26999998}
-      - {x: -0.96, y: 0.22999999}
-      - {x: -1.2099999, y: 0.19999999}
-      - {x: -1.37, y: 0.08}
-      - {x: -1.37, y: -0.01}
-      - {x: -1.2099999, y: -0.16}
-      - {x: -1.16, y: -0.14999999}
-      - {x: -1.06, y: -0.08}
-      - {x: -1.01, y: -0.13}
-      - {x: -0.90999997, y: -0.24}
-      - {x: -0.91999996, y: -0.39}
-      - {x: -0.84999996, y: -0.45999998}
-      - {x: -0.79999995, y: -0.47}
-      - {x: -0.71999997, y: -0.47}
-      - {x: -0.63, y: -0.39}
-      - {x: -0.59999996, y: -0.32999998}
-      - {x: -0.19, y: -0.39999998}
+  m_Offset: {x: 0.06, y: 0}
+  m_Size: {x: 2.2, y: 0.8}
+  m_Direction: 1
 --- !u!1001 &1560272624
 Prefab:
   m_ObjectHideFlags: 0
