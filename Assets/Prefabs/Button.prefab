@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4798096341335876}
   - component: {fileID: 61692587334772026}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ButtonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114185923944983052}
   - component: {fileID: 212133546419173924}
   - component: {fileID: 61849678521893238}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.28, y: 0.64}
-    newSize: {x: 1.28, y: 0.64}
+    newSize: {x: 127999.99, y: 63999.996}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -134,6 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushed: 0
+  buttonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   unpushedSprite: {fileID: 21300000, guid: b9c1de931c1ce4658aede829c5574363, type: 3}
   pushedSprite: {fileID: 21300000, guid: cffde304c77514579b4f8d18a60cc605, type: 3}
 --- !u!212 &212133546419173924
@@ -175,7 +180,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 0.64}
+  m_Size: {x: 127999.99, y: 63999.996}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
