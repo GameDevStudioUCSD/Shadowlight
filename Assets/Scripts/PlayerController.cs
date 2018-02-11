@@ -22,9 +22,6 @@ public class PlayerController : MonoBehaviour {
   // The strength of the character's jump
   public float jumpForce = 7.0f;
 
-  // The layers that make up the ground (currently set to Default)
-  public LayerMask groundLayer;
-
   private Rigidbody2D rb2d = null;
   private Animator am = null;
   private SpriteRenderer sr = null;
@@ -43,9 +40,6 @@ public class PlayerController : MonoBehaviour {
         
     if (inputHorizontal == "Light Horizontal") Globals.lightPlayer = this.gameObject;
     if (inputHorizontal == "Shadow Horizontal") Globals.shadowPlayer = this.gameObject;
-    
-    //Set groundLayer to all layers except for Ignore Raycast
-    groundLayer = ~(1 << LayerMask.NameToLayer("Ignore Raycast"));
 
   }
 
@@ -85,21 +79,37 @@ public class PlayerController : MonoBehaviour {
   private bool IsGrounded() {
 
     // Casts rays from the center of the object downward to check for ground
-    Vector2 position = transform.position;
+    Vector2 position = transform.TransformPoint(GetComponent<BoxCollider2D>().offset);
     Vector2 direction = Vector2.down;
     // The ray's length is slightly longer than half the size of the object
-    float length = (GetComponent<BoxCollider2D>().bounds.size.y / 2) + 0.02f;
+    float length = (GetComponent<BoxCollider2D>().bounds.size.y / 2) + 0.1f;
     // Offset the left and right rays by half of the character's size
     float offset = (GetComponent<BoxCollider2D>().bounds.size.x / 2) - 0.01f;
 
     Vector2 temp = new Vector2(offset, 0);
 
     // Cast three rays to check for ground collision
-    RaycastHit2D hitCenter = Physics2D.Raycast(position, direction, length, groundLayer);
-    RaycastHit2D hitRight = Physics2D.Raycast(position + temp, direction, length, groundLayer);
-    RaycastHit2D hitLeft = Physics2D.Raycast(position - temp, direction, length, groundLayer);
-    if (hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null) {
-      return true;
+    RaycastHit2D[] hitCenter = Physics2D.RaycastAll(position, direction, length);
+    RaycastHit2D[] hitRight = Physics2D.RaycastAll(position + temp, direction, length);
+    RaycastHit2D[] hitLeft = Physics2D.RaycastAll(position - temp, direction, length);
+
+    // Checks each Raycast to see if it collides with ground
+    foreach (RaycastHit2D ray in hitCenter)
+    {
+      if (ray.collider.gameObject != this.gameObject) return true;
+    }
+    if (rayCastCheck(hitCenter) || rayCastCheck(hitRight) || rayCastCheck(hitLeft)) {
+        return true;
+    }
+    return false;
+  }
+
+
+  /** Checks if Raycast collides with an object that's not the self object*/
+  private bool rayCastCheck(RaycastHit2D [] raycast) {
+    foreach (RaycastHit2D ray in raycast) {
+      if (ray.collider != null && ray.collider.gameObject != this.gameObject)
+        return true;
     }
     return false;
   }
