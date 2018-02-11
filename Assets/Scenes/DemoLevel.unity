@@ -315,6 +315,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab6f195d4b5d8f64bad5baf4004aba82, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &264806148 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1252885842429292, guid: 6efae86420049e44b9fde9b0c1398c5d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1761834860}
+--- !u!1 &272516186 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1836284607839486, guid: e95c21a958065954abf7cf5c3171ffc6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1676413454}
 --- !u!4 &332353025 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4034918209470652, guid: 90adf96c01a481d4da33a17df304fcde,
@@ -609,6 +619,49 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab6f195d4b5d8f64bad5baf4004aba82, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &996027797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 996027799}
+  - component: {fileID: 996027798}
+  m_Layer: 0
+  m_Name: LevelSwitchController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &996027798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996027797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0d76cc4ec0ff04393a1c89a6032161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: DemoLevel
+  lightPlayer: {fileID: 272516186}
+  shadowPlayer: {fileID: 264806148}
+--- !u!4 &996027799
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996027797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.24734063, y: -0.25795364, z: -0.08583249}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1109783245
 Prefab:
   m_ObjectHideFlags: 0
@@ -986,11 +1039,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 212171166866133488, guid: c59a2e28ca1e40f4196b1f4642433cba,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c59a2e28ca1e40f4196b1f4642433cba, type: 2}
   m_IsPrefabParent: 0
@@ -1347,16 +1395,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 212083217711134536, guid: e95c21a958065954abf7cf5c3171ffc6,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 50719831677013244, guid: e95c21a958065954abf7cf5c3171ffc6,
-        type: 2}
-      propertyPath: m_Mass
-      value: 0.001
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e95c21a958065954abf7cf5c3171ffc6, type: 2}
   m_IsPrefabParent: 0
@@ -1445,16 +1483,6 @@ Prefab:
     - target: {fileID: 4177665290124090, guid: 6efae86420049e44b9fde9b0c1398c5d, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212221511157830638, guid: 6efae86420049e44b9fde9b0c1398c5d,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 50087282542562078, guid: 6efae86420049e44b9fde9b0c1398c5d,
-        type: 2}
-      propertyPath: m_Mass
-      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6efae86420049e44b9fde9b0c1398c5d, type: 2}

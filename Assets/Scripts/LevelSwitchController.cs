@@ -12,12 +12,14 @@ public class LevelSwitchController : MonoBehaviour {
 
   private Bounds lightDoorBounds;
   private Bounds shadowDoorBounds;
+    private GameObject lightDoor;
+    private GameObject shadowDoor;
 
   void Start() {
 
     // Get the position of door objects
-    GameObject lightDoor = GameObject.FindWithTag("LightDoor");
-    GameObject shadowDoor = GameObject.FindWithTag("ShadowDoor");
+    lightDoor = GameObject.FindWithTag("LightDoor");
+    shadowDoor = GameObject.FindWithTag("ShadowDoor");
     lightDoorBounds = lightDoor.GetComponent<Collider2D>().bounds;
     shadowDoorBounds = shadowDoor.GetComponent<Collider2D>().bounds;
   }
@@ -40,7 +42,16 @@ public class LevelSwitchController : MonoBehaviour {
       && lightDoorBounds.Contains(lightPlayerBounds.max)
       && shadowDoorBounds.Contains(shadowPlayerBounds.min)
       && shadowDoorBounds.Contains(shadowPlayerBounds.max)) {
-      SceneManager.LoadScene(nextScene);
+            lightDoor.GetComponent<Animator>().SetTrigger("Open");
+            shadowDoor.GetComponent<Animator>().SetTrigger("Open");
+            Globals.lightPlayer.GetComponent<PlayerController>().enabled = false;
+            Globals.shadowPlayer.GetComponent<PlayerController>().enabled = false;
+            StartCoroutine("LoadScene", .2f);
     }
   }
+
+    IEnumerator LoadScene(float delay) {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(nextScene);
+    }
 }

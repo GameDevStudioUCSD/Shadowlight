@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour {
     Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
     Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
 
+        if (inputHorizontal == "Light Horizontal") Globals.lightPlayer = this.gameObject;
+        if (inputHorizontal == "Shadow Horizontal") Globals.shadowPlayer = this.gameObject;
+
     //Set groundLayer to default
     groundLayer = 1 << LayerMask.NameToLayer("Default");
 
