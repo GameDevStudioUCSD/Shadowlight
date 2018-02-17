@@ -7,8 +7,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PressurePlate : MonoBehaviour {
 
-    float offset = 0.13f;
-
     public bool pressed = false;
     public UnityEvent platePressed = null;
     public UnityEvent plateUnpressed = null;
@@ -31,7 +29,6 @@ public class PressurePlate : MonoBehaviour {
             platePressed.Invoke();
 
             renderer.sprite = pressedSprite;
-            transform.position = new Vector2(transform.position.x, transform.position.y - offset);
         }
     }
 
@@ -41,7 +38,6 @@ public class PressurePlate : MonoBehaviour {
             plateUnpressed.Invoke();
 
             renderer.sprite = unpressedSprite;
-            transform.position = new Vector2(transform.position.x, transform.position.y + offset);
         }
     }
 }
