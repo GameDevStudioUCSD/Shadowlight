@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PressurePlate : MonoBehaviour {
 
-    public bool pressed = false;
+    private bool pressed = false;
     public UnityEvent platePressed = null;
     public UnityEvent plateUnpressed = null;
 
