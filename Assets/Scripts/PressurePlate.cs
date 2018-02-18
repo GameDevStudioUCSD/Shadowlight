@@ -1,17 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class PressurePlate : MonoBehaviour {
-	
-	public bool pressed = false;
 
-	void OnTriggerEnter2D(Collider2D other) {
-		pressed = true;
-		// TODO 2018-01-20: some kind of animation ?
-	}
+    private bool pressed = false;
+    public UnityEvent platePressed = null;
+    public UnityEvent plateUnpressed = null;
 
-	void OnTriggerExit2D(Collider2D other) {
-		pressed = false;
-	}
+    public Sprite unpressedSprite = null;
+    public Sprite pressedSprite = null;
+
+    private new SpriteRenderer renderer = null;
+
+    private void Start() {
+        renderer = GetComponent<SpriteRenderer> ();
+        Assert.IsNotNull(renderer, name + " should have SpriteRenderer");
+        renderer.sprite = unpressedSprite;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!pressed)
+        {
+            if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
+            {
+                pressed = true;
+                platePressed.Invoke();
+
+                renderer.sprite = pressedSprite;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(pressed) {
+            pressed = false;
+            plateUnpressed.Invoke();
+
+            renderer.sprite = unpressedSprite;
+        }
+    }
 }
