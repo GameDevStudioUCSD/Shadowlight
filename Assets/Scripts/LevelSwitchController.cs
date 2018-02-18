@@ -44,9 +44,9 @@ public class LevelSwitchController : MonoBehaviour {
       && shadowDoorBounds.Contains(shadowPlayerBounds.max)) {
             lightDoor.GetComponent<Animator>().SetTrigger("Open");
             shadowDoor.GetComponent<Animator>().SetTrigger("Open");
-            Globals.lightPlayer.GetComponent<PlayerController>().enabled = false;
-            Globals.shadowPlayer.GetComponent<PlayerController>().enabled = false;
-            StartCoroutine("LoadScene", .2f);
+            //Globals.lightPlayer.GetComponent<PlayerController>().enabled = false;
+            //Globals.shadowPlayer.GetComponent<PlayerController>().enabled = false;
+            StartCoroutine("LoadScene", 0.5f);
     }
   }
 
