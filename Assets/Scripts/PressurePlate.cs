@@ -21,14 +21,18 @@ public class PressurePlate : MonoBehaviour {
         Assert.IsNotNull(renderer, name + " should have SpriteRenderer");
         renderer.sprite = unpressedSprite;
     }
-    
-    private void OnTriggerEnter2D(Collider2D other) {
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (!pressed)
         {
-            pressed = true;
-            platePressed.Invoke();
+            if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
+            {
+                pressed = true;
+                platePressed.Invoke();
 
-            renderer.sprite = pressedSprite;
+                renderer.sprite = pressedSprite;
+            }
         }
     }
 
