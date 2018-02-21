@@ -41,7 +41,7 @@ public class Lever : MonoBehaviour {
     {
         // Player must be in range to interact with the lever
         // TODO 2018-01-29: Change to interact button
-        if (inRange == true && Input.GetKeyDown("q"))
+        if (inRange == true && Input.GetKeyDown(KeyCode.Q))
         {
             Toggle();
         }
@@ -73,7 +73,7 @@ public class Lever : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         // Check that only a player object can interact with the lever
-        if (other.tag == "Player")
+        if (other.GetComponent<PlayerController>())
         {
             inRange = true;
         }
@@ -81,7 +81,7 @@ public class Lever : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.GetComponent<PlayerController>())
         {
             inRange = false;
         }
