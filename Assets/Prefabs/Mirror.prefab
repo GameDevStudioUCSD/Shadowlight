@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1866201452982620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.585, y: -5.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4801030306813042}
@@ -289,13 +289,14 @@ MonoBehaviour:
     m_Bits: 256
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 4294967035
+    m_Bits: 4294966523
   visibleTargets: []
   meshResolution: 5
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
   maskCutawayDst: 0
   viewMeshFilter: {fileID: 33033685565185014}
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!212 &212430921540998608
 SpriteRenderer:
   m_ObjectHideFlags: 1

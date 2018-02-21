@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61525370547159642}
   - component: {fileID: 95254757992746072}
   - component: {fileID: 114202599342991962}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ShadowDoor
   m_TagString: ShadowDoor
   m_Icon: {fileID: 0}

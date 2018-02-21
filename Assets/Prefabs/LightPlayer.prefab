@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 61048722381212142}
   - component: {fileID: 58209895407899722}
   - component: {fileID: 95011867005735956}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: LightPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4772665329864380}
   - component: {fileID: 33173425071493916}
   - component: {fileID: 23334377056297612}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: CastLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ MonoBehaviour:
   viewAngle: 360
   targetMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 256
   obstacleMask:
     serializedVersion: 2
     m_Bits: 4294966523
@@ -220,6 +220,7 @@ MonoBehaviour:
   edgeDstThreshold: 0.5
   maskCutawayDst: 0
   viewMeshFilter: {fileID: 33173425071493916}
+  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114728715886641492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,9 +236,6 @@ MonoBehaviour:
   inputJump: Light Jump
   horizontalSpeed: 5
   jumpForce: 7
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!212 &212083217711134536
 SpriteRenderer:
   m_ObjectHideFlags: 1

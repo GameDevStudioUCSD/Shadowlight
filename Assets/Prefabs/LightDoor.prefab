@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61917219189879774}
   - component: {fileID: 95641525626258714}
   - component: {fileID: 114987928574004292}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: LightDoor
   m_TagString: LightDoor
   m_Icon: {fileID: 0}
@@ -96,16 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fd7afbfb561478fb179bf966b509af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onOpen:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onClose:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212102214715764790
 SpriteRenderer:
   m_ObjectHideFlags: 1

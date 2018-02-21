@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4230728254408754}
   - component: {fileID: 61430021510269038}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PressurePlateBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 212672540170276726}
   - component: {fileID: 61985174251707916}
   - component: {fileID: 114229024152931892}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310613d520a984186abb8835fb31070c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressed: 0
   platePressed:
     m_PersistentCalls:
       m_Calls:

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4551600552331960}
   - component: {fileID: 33973527396311644}
   - component: {fileID: 23214693904731124}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: CastLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114500886005648260}
   - component: {fileID: 114048119864443872}
   - component: {fileID: 95089725251884298}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Candle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
