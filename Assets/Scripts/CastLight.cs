@@ -24,6 +24,7 @@ public class CastLight : MonoBehaviour {
     public float maskCutawayDst = 0f; //the amount of the edge of obstacles that is shown; values other than 0 cause strange ground shadows
 
     public MeshFilter viewMeshFilter;
+    public Vector3 positionOffset = Vector3.zero;
     Mesh viewMesh; //the light polygon created by the script
 
     /**
@@ -62,15 +63,15 @@ public class CastLight : MonoBehaviour {
      */
     void FindVisibleTargets() {
         visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
+        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position + positionOffset, viewRadius, targetMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++) {
             Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector3 dirToTarget = (target.position - transform.position + positionOffset).normalized;
             if (Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2) {
-                float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)
-                    || Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask).collider.transform == target) {
+                float dstToTarget = Vector3.Distance(transform.position + positionOffset, target.position);
+                if (!Physics2D.Raycast(transform.position + positionOffset, dirToTarget, dstToTarget, obstacleMask)
+                    || Physics2D.Raycast(transform.position + positionOffset, dirToTarget, dstToTarget, obstacleMask).collider.transform == target) {
                     if (isActiveAndEnabled) {
                         visibleTargets.Add(target);
                         //IMPORTANT: Put code here to get objects to do something when in the light
@@ -172,13 +173,13 @@ public class CastLight : MonoBehaviour {
      */
     ViewCastInfo ViewCast(float globalAngle) {
         Vector3 dir = DirFromAngle(globalAngle, true);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, dir, viewRadius, obstacleMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + positionOffset, dir, viewRadius, obstacleMask);
 
         foreach (RaycastHit2D hit in hits) {
             if (hit.transform == this.transform) continue;
             if (hit) return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         }
-        return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
+        return new ViewCastInfo(false, transform.position + positionOffset + dir * viewRadius, viewRadius, globalAngle);
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
