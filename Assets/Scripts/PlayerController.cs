@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour {
       }
     }
 
+    // Reset Key
+    if (Input.GetKeyDown(KeyCode.R)) Die();
+
     am.SetBool("moving", tmpVelocity.x != 0);
     am.SetFloat("yVelocity", tmpVelocity.y);
 
@@ -94,10 +97,6 @@ public class PlayerController : MonoBehaviour {
     RaycastHit2D[] hitLeft = Physics2D.RaycastAll(position - temp, direction, length);
 
     // Checks each Raycast to see if it collides with ground
-    foreach (RaycastHit2D ray in hitCenter)
-    {
-      if (ray.collider.gameObject != this.gameObject) return true;
-    }
     if (rayCastCheck(hitCenter) || rayCastCheck(hitRight) || rayCastCheck(hitLeft)) {
         return true;
     }

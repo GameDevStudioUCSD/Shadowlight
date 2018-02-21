@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114979809006432630}
   - component: {fileID: 212221511157830638}
   - component: {fileID: 61307603379651358}
-  - component: {fileID: 58724954683491120}
   - component: {fileID: 95444140623978862}
   m_Layer: 8
   m_Name: ShadowPlayer
@@ -39,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252885842429292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 1.9, z: 0}
+  m_LocalPosition: {x: -10, y: 2.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,21 +64,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58724954683491120
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1252885842429292}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0.2}
-  serializedVersion: 2
-  m_Radius: 0.6
 --- !u!61 &61307603379651358
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -92,7 +76,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.64}
+  m_Offset: {x: 0, y: -0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -103,7 +87,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 1.28}
+  m_Size: {x: 0.64, y: 1.92}
   m_EdgeRadius: 0
 --- !u!95 &95444140623978862
 Animator:
@@ -137,9 +121,6 @@ MonoBehaviour:
   inputJump: Shadow Jump
   horizontalSpeed: 5
   jumpForce: 7
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!212 &212221511157830638
 SpriteRenderer:
   m_ObjectHideFlags: 1
