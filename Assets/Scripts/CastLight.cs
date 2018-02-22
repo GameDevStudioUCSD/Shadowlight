@@ -80,7 +80,7 @@ public class CastLight : MonoBehaviour {
                             target.GetComponentInParent<Mirror>().Activate(this); //turns mirror light on
                         if (target.GetComponent<ShadowPlayerObject>())
                             target.GetComponent<ShadowPlayerObject>().Die(); //game over
-                        if (target.GetComponent<PlayerController>())
+                        if (target.GetComponent<PlayerController>() && target.GetComponent<PlayerController>().lightOrShadow == PlayerController.PlayerType.Shadow)
                             target.GetComponent<PlayerController>().Die(); //game over
                     }
                 }

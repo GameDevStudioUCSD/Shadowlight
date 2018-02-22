@@ -8,13 +8,17 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
 
-  // See Edit -> Project Settings -> Input for the input configuration.
+    // See Edit -> Project Settings -> Input for the input configuration.
+
+    public enum PlayerType { Light, Shadow };
+
+        public PlayerType lightOrShadow;
 
   // Controls horizontal movement.
-  public string inputHorizontal = "";
+  private string inputHorizontal = "";
 
   // Controls the jump action.
-  public string inputJump = "";
+  private string inputJump = "";
 
   // How fast should the character move horizontally.
   public float horizontalSpeed = 5.0f;
@@ -22,11 +26,25 @@ public class PlayerController : MonoBehaviour {
   // The strength of the character's jump
   public float jumpForce = 7.0f;
 
+  // Amount of force needed to kill the player by crushing
+  private float crushThreshold = 1000f;
+
   private Rigidbody2D rb2d = null;
   private Animator am = null;
   private SpriteRenderer sr = null;
 
   private void Start() {
+
+        if (lightOrShadow == PlayerType.Light) {
+            inputHorizontal = "Light Horizontal";
+            inputJump = "Light Jump";
+            Globals.lightPlayer = this.gameObject;
+        }
+        else if (lightOrShadow == PlayerType.Shadow) {
+            inputHorizontal = "Shadow Horizontal";
+            inputJump = "Shadow Jump";
+            Globals.shadowPlayer = this.gameObject;
+        }
 
     rb2d = GetComponent<Rigidbody2D>();
     am = GetComponent<Animator>();
@@ -37,9 +55,6 @@ public class PlayerController : MonoBehaviour {
     // Please change the values in the editor.
     Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
     Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
-        
-    if (inputHorizontal == "Light Horizontal") Globals.lightPlayer = this.gameObject;
-    if (inputHorizontal == "Shadow Horizontal") Globals.shadowPlayer = this.gameObject;
 
   }
 
@@ -119,9 +134,15 @@ public class PlayerController : MonoBehaviour {
      * Should cause a game over, but is currently TODO.
      */
     public virtual void Die() {
-        if (inputHorizontal == "Shadow Horizontal") {
-            //TODO
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        //TODO
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    /**
+     *  If the player experiences a huge force from above, this kills them.
+     */
+    public void OnTriggerEnter2D(Collider2D collision) {
+        Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (rb && -rb.velocity.y * rb.mass >= crushThreshold) Die();
     }
 }
