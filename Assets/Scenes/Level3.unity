@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0d76cc4ec0ff04393a1c89a6032161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: DemoLevel
+  nextScene: ThanksForPlaying
   lightPlayer: {fileID: 272516186}
   shadowPlayer: {fileID: 264806148}
 --- !u!4 &996027799
