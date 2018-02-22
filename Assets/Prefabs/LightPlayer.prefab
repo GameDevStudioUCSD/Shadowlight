@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 212083217711134536}
   - component: {fileID: 61048722381212142}
   - component: {fileID: 95011867005735956}
+  - component: {fileID: 61835468465555642}
   m_Layer: 9
   m_Name: LightPlayer
   m_TagString: Untagged
@@ -162,6 +163,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 1.92}
   m_EdgeRadius: 0
+--- !u!61 &61835468465555642
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836284607839486}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.75}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 2.56}
+    newSize: {x: 1.28, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.2}
+  m_EdgeRadius: 0
 --- !u!95 &95011867005735956
 Animator:
   serializedVersion: 3
@@ -216,8 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbf524d6b0f25d4c8225895b8fbfcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputHorizontal: Light Horizontal
-  inputJump: Light Jump
+  lightOrShadow: 0
   horizontalSpeed: 5
   jumpForce: 7
 --- !u!212 &212083217711134536

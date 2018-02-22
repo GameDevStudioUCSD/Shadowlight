@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
   private SpriteRenderer sr = null;
 
   private void Start() {
+        Globals.gameOverScreen = GameObject.FindGameObjectWithTag("GameOverScreen");
 
         if (lightOrShadow == PlayerType.Light) {
             inputHorizontal = "Light Horizontal";
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Reset Key
-    if (Input.GetKeyDown(KeyCode.R)) Die();
+    if (Input.GetKeyDown(KeyCode.R)) Reload();
 
     am.SetBool("moving", tmpVelocity.x != 0);
     am.SetFloat("yVelocity", tmpVelocity.y);
@@ -130,11 +131,22 @@ public class PlayerController : MonoBehaviour {
 
 
     /**
-     * Called when the Shadow player touches the light.
-     * Should cause a game over, but is currently TODO.
+     * Called when the Shadow player touches the light, or any other time the player is killed.
      */
     public virtual void Die() {
-        //TODO
+        Globals.gameOverScreen.GetComponent<SpriteRenderer>().enabled = true;
+        StartCoroutine("Reload", 3f);
+    }
+
+    IEnumerator Reload(float delay) {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    /**
+     *  Reload the scene instantly.
+     */
+    public void Reload() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
