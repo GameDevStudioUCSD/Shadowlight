@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Singleton : MonoBehaviour
 {
+    public string startingScene;
     public string endingScene;
     private static Singleton instance = null;
 
@@ -23,6 +24,7 @@ public class Singleton : MonoBehaviour
     }
     void OnEnable()
     { 
+        Debug.Log("scene changed");
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
@@ -30,7 +32,12 @@ public class Singleton : MonoBehaviour
     {
         if (scene.name == endingScene)
         {
-            Destroy(gameObject);
+            instance.gameObject.GetComponent<AudioSource>().Stop();
+        }
+
+        if (scene.name == startingScene)
+        {
+            instance.gameObject.GetComponent<AudioSource>().Play();
         }
     }
 }
