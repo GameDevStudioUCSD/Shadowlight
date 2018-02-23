@@ -29,14 +29,21 @@ public class Singleton : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
+        AudioSource audio = instance.gameObject.GetComponent<AudioSource>();
         if (scene.name == endingScene)
         {
-            instance.gameObject.GetComponent<AudioSource>().Stop();
+            if (audio.isPlaying)
+            {
+                audio.Stop();
+            }
         }
 
         if (scene.name == startingScene)
         {
-            instance.gameObject.GetComponent<AudioSource>().Play();
+            if (!audio.isPlaying)
+            {
+                audio.Play();
+            }
         }
     }
 }
