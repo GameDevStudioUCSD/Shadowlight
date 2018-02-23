@@ -8,6 +8,10 @@ public class EndOfDemo : MonoBehaviour {
     public string nextScene;
 
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)) SceneManager.LoadScene(nextScene);
+        Invoke("GoToTitleScreen", 5);
+    }
+
+    void GoToTitleScreen() {
+        SceneManager.LoadScene(nextScene);
     }
 }
