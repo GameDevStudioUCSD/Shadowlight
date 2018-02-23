@@ -24,7 +24,6 @@ public class Singleton : MonoBehaviour
     }
     void OnEnable()
     { 
-        Debug.Log("scene changed");
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
