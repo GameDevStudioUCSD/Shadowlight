@@ -141,13 +141,7 @@ public class PlayerController : MonoBehaviour {
      */
     public virtual void Die() {
         Globals.gameOverScreen.GetComponent<SpriteRenderer>().enabled = true;
-        //StartCoroutine("Reload", 3f);
         Invoke("Reload", 3);
-    }
-
-    /*IEnumerator Reload(float delay) {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /**
