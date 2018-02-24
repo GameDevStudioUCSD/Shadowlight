@@ -92,6 +92,12 @@ public class PlayerController : MonoBehaviour {
     am.SetFloat("yVelocity", tmpVelocity.y);
 
     rb2d.velocity = tmpVelocity;
+
+    // Skip game over screen
+    if (Input.GetKeyDown(KeyCode.Space) && IsInvoking("Reload")) {
+      CancelInvoke();
+      Reload();
+    }
   }
 
   /** Checks if there is ground underneath the object*/
@@ -135,10 +141,11 @@ public class PlayerController : MonoBehaviour {
      */
     public virtual void Die() {
         Globals.gameOverScreen.GetComponent<SpriteRenderer>().enabled = true;
-        StartCoroutine("Reload", 3f);
+        //StartCoroutine("Reload", 3f);
+        Invoke("Reload", 3);
     }
 
-    IEnumerator Reload(float delay) {
+    /*IEnumerator Reload(float delay) {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
