@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour {
     public GameObject castLight;
-    public List<GameObject> lightDetectors = new List<GameObject>();
 
     protected CastLight lightScript;
     protected List<CastLight> sources = new List<CastLight>();
@@ -20,18 +19,9 @@ public class Mirror : MonoBehaviour {
         //check light sources to see if mirror should be Deactivated
         for (int i = 0; i < sources.Count; i++) {
             CastLight source = sources[i];
-            if (!source.visibleTargets.Contains(this.transform)) { //checks if center is still lit
-                bool flag = false;
-                foreach (GameObject detector in lightDetectors) { //checks if each detector is lit
-                    if (source.visibleTargets.Contains(detector.transform)) { //if this detector is lit by this source
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag) { //if no detectors are lit; current light source is not lighting the mirror anymore
-                    Deactivate(source);
-                    i = -1; //restart loop (necessary when List is changed)
-                }
+            if (!source.visibleTargets.Contains(this.transform)) {
+                Deactivate(source);
+                i = -1; //restart loop (necessary when List is changed)
             }
         }
     }

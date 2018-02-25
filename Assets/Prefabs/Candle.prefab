@@ -160,12 +160,12 @@ MonoBehaviour:
   viewAngle: 360
   targetMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 256
   obstacleMask:
     serializedVersion: 2
     m_Bits: 4294966523
   visibleTargets: []
-  meshResolution: 1
+  meshResolution: 0.1
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
   maskCutawayDst: 0

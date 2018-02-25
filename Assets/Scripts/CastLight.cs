@@ -16,6 +16,8 @@ public class CastLight : MonoBehaviour {
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>(); //the list of objects that are in the light
+    private List<RaycastHit2D> hitsToCheck = new List<RaycastHit2D>();
+    private List<GameObject> hitsChecked = new List<GameObject>();
 
     public float meshResolution; //increasing this improves corner recognition, but slows performance
     public int edgeResolveIterations;
@@ -47,7 +49,12 @@ public class CastLight : MonoBehaviour {
     IEnumerator FindTargetsWithDelay(float delay) {
         while (true) {
             yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
+            visibleTargets.Clear();
+            foreach (RaycastHit2D hit in hitsToCheck) {
+                CheckHit(hit);
+            }
+            hitsToCheck.Clear();
+            hitsChecked.Clear();
         }
     }
 
@@ -61,30 +68,26 @@ public class CastLight : MonoBehaviour {
     /**
      * Identifies objects that are in the light
      */
-    void FindVisibleTargets() {
-        visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position + positionOffset, viewRadius, targetMask);
+    void CheckHit(RaycastHit2D hit) {
+        Transform target = hit.transform;
+        if (hitsChecked.Contains(target.gameObject)) return; //don't check the same object twice in one frame
 
-        for (int i = 0; i < targetsInViewRadius.Length; i++) {
-            Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position + positionOffset).normalized;
-            if (Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2) {
-                float dstToTarget = Vector3.Distance(transform.position + positionOffset, target.position);
-                if (!Physics2D.Raycast(transform.position + positionOffset, dirToTarget, dstToTarget, obstacleMask)
-                    || Physics2D.Raycast(transform.position + positionOffset, dirToTarget, dstToTarget, obstacleMask).collider.transform == target) {
-                    if (isActiveAndEnabled) {
-                        visibleTargets.Add(target);
-                        //IMPORTANT: Put code here to get objects to do something when in the light
-                        if ((target.GetComponent<Mirror>() && target.GetComponent<Mirror>().gameObject != this.gameObject) //prevents mirrors from keeping themselves active
-                            || (target.GetComponentInParent<Mirror>() && target.GetComponentInParent<Mirror>().gameObject != this.gameObject))
-                            target.GetComponentInParent<Mirror>().Activate(this); //turns mirror light on
-                        if (target.GetComponent<ShadowPlayerObject>())
-                            target.GetComponent<ShadowPlayerObject>().Die(); //game over
-                        if (target.GetComponent<PlayerController>() && target.GetComponent<PlayerController>().lightOrShadow == PlayerController.PlayerType.Shadow)
-                            target.GetComponent<PlayerController>().Die(); //game over
-                    }
-                }
-            }
+        if (isActiveAndEnabled) {
+            hitsChecked.Add(target.gameObject);
+            visibleTargets.Add(target);
+
+            //IMPORTANT: Put code here to get objects to do something when in the light
+            Mirror mirror = target.GetComponent<Mirror>();
+            if (mirror && mirror.gameObject != this.gameObject) //prevents mirrors from keeping themselves active
+                mirror.Activate(this); //turns mirror light on
+
+            ShadowPlayerObject shadowPlayer = target.GetComponent<ShadowPlayerObject>();
+            if (shadowPlayer)
+                shadowPlayer.Die(); //game over
+
+            PlayerController player = target.GetComponent<PlayerController>();
+            if (player && player.lightOrShadow == PlayerController.PlayerType.Shadow)
+                player.Die(); //game over
         }
     }
 
@@ -173,11 +176,12 @@ public class CastLight : MonoBehaviour {
      */
     ViewCastInfo ViewCast(float globalAngle) {
         Vector3 dir = DirFromAngle(globalAngle, true);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + positionOffset, dir, viewRadius, obstacleMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + positionOffset, dir, viewRadius, obstacleMask | targetMask);
 
         foreach (RaycastHit2D hit in hits) {
             if (hit.transform == this.transform) continue;
-            if (hit) return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+            if (hit && (targetMask == (targetMask | (1 << hit.collider.gameObject.layer)))) hitsToCheck.Add(hit);
+            if (hit && (obstacleMask == (obstacleMask | (1 << hit.collider.gameObject.layer)))) return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         }
         return new ViewCastInfo(false, transform.position + positionOffset + dir * viewRadius, viewRadius, globalAngle);
     }

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightOrShadow: 1
   horizontalSpeed: 5
-  jumpForce: 7
+  jumpForce: 13
 --- !u!212 &212221511157830638
 SpriteRenderer:
   m_ObjectHideFlags: 1
