@@ -61,47 +61,49 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void Update() {
+        if (!inputHorizontal.Equals("")) {
 
-    Vector2 tmpVelocity = rb2d.velocity;
+            Vector2 tmpVelocity = rb2d.velocity;
 
-    // Horizontal movement.
-    // TODO 2018-01-20: Maybe we can do gradual acceleration movement.
-    tmpVelocity.x = Input.GetAxis(inputHorizontal) * horizontalSpeed;
+            // Horizontal movement.
+            // TODO 2018-01-20: Maybe we can do gradual acceleration movement.
+            tmpVelocity.x = Input.GetAxis(inputHorizontal) * horizontalSpeed;
 
-    // Flip the sprite if the velocity changes
-    if (tmpVelocity.x < 0) {
-      sr.flipX = true;
-    }
-    else if (tmpVelocity.x > 0) {
-      sr.flipX = false;
-    }
+            // Flip the sprite if the velocity changes
+            if (tmpVelocity.x < 0) {
+                sr.flipX = true;
+            }
+            else if (tmpVelocity.x > 0) {
+                sr.flipX = false;
+            }
 
-    // Jump Movement
-    // TODO 2018-01-29: Add friction to jump
-    // Add a feeling of inertia
-    if (Input.GetButtonDown(inputJump)) {
-      if (IsGrounded()) {
-        tmpVelocity.y = jumpForce;
-        am.SetTrigger("jump");
-      }
-    }
+            // Jump Movement
+            // TODO 2018-01-29: Add friction to jump
+            // Add a feeling of inertia
+            if (Input.GetButtonDown(inputJump)) {
+                if (IsGrounded()) {
+                    tmpVelocity.y = jumpForce;
+                    am.SetTrigger("jump");
+                }
+            }
 
-    // Reset Key
-    if (Input.GetKeyDown(KeyCode.R)) Reload();
+            // Reset Key
+            if (Input.GetKeyDown(KeyCode.R)) Reload();
 
-    am.SetBool("moving", tmpVelocity.x != 0);
-    am.SetFloat("yVelocity", tmpVelocity.y);
+            am.SetBool("moving", tmpVelocity.x != 0);
+            am.SetFloat("yVelocity", tmpVelocity.y);
 
-    rb2d.velocity = tmpVelocity;
+            rb2d.velocity = tmpVelocity;
 
-    // Skip game over screen
-    if (Input.GetKeyDown(KeyCode.Space) && IsInvoking("Reload")) {
-      CancelInvoke();
-      Reload();
-    }
+            // Skip game over screen
+            if (Input.GetKeyDown(KeyCode.Space) && IsInvoking("Reload")) {
+                CancelInvoke();
+                Reload();
+            }
+        }
   }
 
-  /** Checks if there is ground underneath the object*/
+  /** Checks if there is ground underneath the object */
   private bool IsGrounded() {
 
     // Casts rays from the center of the object downward to check for ground
@@ -141,8 +143,29 @@ public class PlayerController : MonoBehaviour {
      * Called when the Shadow player touches the light, or any other time the player is killed.
      */
     public virtual void Die() {
+        rb2d.velocity = Vector2.zero; //stop moving
+        rb2d.gravityScale = 0; //stop falling
+        gameObject.GetComponent<Collider2D>().enabled = false; //don't touch things anymore
+        inputHorizontal = ""; //input stops working
+        inputJump = ""; //can't jump anymore
+        am.SetTrigger("death"); //play death animation
+        Invoke("GameOver", 1); //call GameOver() after one second
+    }
+
+    /**
+     * Called from within the animator to turn off the sprite after the death animation.
+     * Without this, the death animation will loop.
+     */
+    public void EndDeathAnimation() {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    /**
+     * Brings up the game over screen and calls Reload after 3 seconds.
+     */
+    public void GameOver() {
         Globals.gameOverScreen.GetComponent<SpriteRenderer>().enabled = true;
-        Invoke("Reload", 3);
+        Invoke("Reload", 3); //call Reload() after three seconds
     }
 
     /**
