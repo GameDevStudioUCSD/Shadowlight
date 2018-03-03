@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour {
     rb2d = GetComponent<Rigidbody2D>();
     am = GetComponent<Animator>();
     sr = GetComponent<SpriteRenderer>();
+
     // Since we have the RequireComponent, this should never happen.
     Debug.Assert(rb2d != null, "PlayerController: Needs Rigidbody2D.", this);
 
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour {
     Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
     Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
 
+    CameraZoom.instance.RegisterPlayer(transform);
   }
 
   private void Update() {
@@ -151,7 +153,7 @@ public class PlayerController : MonoBehaviour {
     public void Reload() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
+
     /**
      *  If the player experiences a huge force from above, this kills them.
      */
