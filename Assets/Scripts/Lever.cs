@@ -14,6 +14,7 @@ public class Lever : MonoBehaviour {
     public UnityEvent leftMode = null;
     public UnityEvent rightMode = null;
     private Animator animator = null;
+    public bool startNoAction = false;
     private bool left = true;
     private bool inRange = false;
 
@@ -26,14 +27,21 @@ public class Lever : MonoBehaviour {
 
     private void OnEnable()
     {
-        // Invoke the event associated with the default state of the lever
-        if (left)
+        if (!startNoAction)
         {
-            leftMode.Invoke();
+            // Invoke the event associated with the default state of the lever
+            if (left)
+            {
+                leftMode.Invoke();
+            }
+            else
+            {
+                rightMode.Invoke();
+            }
         }
         else
         {
-            rightMode.Invoke();
+            startNoAction = !startNoAction;
         }
     }
 
@@ -56,7 +64,6 @@ public class Lever : MonoBehaviour {
         // If toggled left, switch to right
         if(left)
         {
-
             rightMode.Invoke();
             animator.Play("ToggleRight");
         }
