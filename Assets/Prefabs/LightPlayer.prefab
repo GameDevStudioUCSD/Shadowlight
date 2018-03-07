@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 61835468465555642}
   m_Layer: 9
   m_Name: LightPlayer
-  m_TagString: Untagged
+  m_TagString: LightPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
