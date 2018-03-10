@@ -180,8 +180,24 @@ public class PlayerController : MonoBehaviour {
     /**
      *  If the player experiences a huge force from above, this kills them.
      */
-    public void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
         if (rb && -rb.velocity.y * rb.mass >= crushThreshold) Die();
+    }
+
+    /**
+     * Show interactable object indicator
+     */
+    public void ShowIndicator()
+    {
+        GameObject indicator = transform.Find("Indicator").gameObject;
+        indicator.SetActive(true);
+    }
+
+    public void HideIndicator()
+    {
+        GameObject indicator = transform.Find("Indicator").gameObject;
+        indicator.SetActive(false);
     }
 }

@@ -10,6 +10,10 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour {
     private string inRange = "";    // Marks which character is in range
     public UnityEvent interact = null;
+    public UnityEvent lightPlayerEnter = null;
+    public UnityEvent shadowPlayerEnter = null;
+    public UnityEvent lightPlayerExit = null;
+    public UnityEvent shadowPlayerExit = null;
 
 	// Update is called once per frame
 	void Update () {
@@ -26,6 +30,7 @@ public class Interactable : MonoBehaviour {
     // Because OnTriggerStay2D was only being called when collider was moving
     void OnTriggerEnter2D(Collider2D other)
     {
+        print("onTriggerEnter called");
         // Check that only a player object can interact with the lever
         if (other.GetComponent<PlayerController>())
         {
@@ -33,10 +38,12 @@ public class Interactable : MonoBehaviour {
             if (other.tag == "LightPlayer")
             {
                 inRange = "LightPlayer";
+                lightPlayerEnter.Invoke();
             }
             else if (other.tag == "ShadowPlayer")
             {
                 inRange = "ShadowPlayer";
+                shadowPlayerEnter.Invoke();
             }
         }
     }
@@ -45,6 +52,17 @@ public class Interactable : MonoBehaviour {
     {
         if (other.GetComponent<PlayerController>())
         {
+            if (other.tag == "LightPlayer")
+            {
+                inRange = "LightPlayer";
+                lightPlayerExit.Invoke();
+            }
+            else if (other.tag == "ShadowPlayer")
+            {
+                inRange = "ShadowPlayer";
+                shadowPlayerExit.Invoke();
+            }
+
             inRange = "";
         }
     }
