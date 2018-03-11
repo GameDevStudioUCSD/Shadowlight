@@ -68,15 +68,6 @@ public class PlayerController : MonoBehaviour
 
         indicator = transform.Find("Indicator").gameObject;
 
-        // Since we have the RequireComponent, this should never happen.
-        Debug.Assert(rb2d != null, "PlayerController: Needs Rigidbody2D.", this);
-        Debug.Assert(indicator != null, "PlayerController: Needs Indicator.", this);
-
-        // Please change the values in the editor.
-        Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
-        Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
-        Debug.Assert(inputInteract != "", "PlayerController: Interact input is empty.", this);
-
         CameraZoom.instance.RegisterPlayer(transform);
     }
 
