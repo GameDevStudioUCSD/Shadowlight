@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Globals.gameOverScreen = GameObject.FindGameObjectWithTag("GameOverScreen");
-        if (Physics2D.gravity.y >= -10) Physics2D.gravity = 3 * Physics2D.gravity;
 
         if (lightOrShadow == PlayerType.Light)
         {
