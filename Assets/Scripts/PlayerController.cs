@@ -184,15 +184,6 @@ public class PlayerController : MonoBehaviour
     }
 
     /**
-     * Called from within the animator to turn off the sprite after the death animation.
-     * Without this, the death animation will loop.
-     */
-    public void EndDeathAnimation()
-    {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    /**
      * Brings up the game over screen and calls Reload after 3 seconds.
      */
     public void GameOver()
