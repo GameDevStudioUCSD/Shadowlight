@@ -122,13 +122,6 @@ public class PlayerController : MonoBehaviour
 
             rb2d.velocity = tmpVelocity;
 
-            // Skip game over screen
-            if (Input.GetKeyDown(KeyCode.Space) && IsInvoking("Reload"))
-            {
-                CancelInvoke();
-                Reload();
-            }
-
             // Check if player can interact with object
             if(interactableScript != null && Input.GetButtonDown(inputInteract)) {
                 interactableScript.interact.Invoke();
