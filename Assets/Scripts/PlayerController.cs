@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Globals.gameOverScreen = GameObject.FindGameObjectWithTag("GameOverScreen");
-        if (Physics2D.gravity.y >= -10) Physics2D.gravity = 3 * Physics2D.gravity;
 
         if (lightOrShadow == PlayerType.Light)
         {
@@ -68,15 +67,6 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         indicator = transform.Find("Indicator").gameObject;
-
-        // Since we have the RequireComponent, this should never happen.
-        Debug.Assert(rb2d != null, "PlayerController: Needs Rigidbody2D.", this);
-        Debug.Assert(indicator != null, "PlayerController: Needs Indicator.", this);
-
-        // Please change the values in the editor.
-        Debug.Assert(inputHorizontal != "", "PlayerController: Horizontal input is empty.", this);
-        Debug.Assert(inputJump != "", "PlayerController: Jump input is empty.", this);
-        Debug.Assert(inputInteract != "", "PlayerController: Interact input is empty.", this);
 
         CameraZoom.instance.RegisterPlayer(transform);
     }
@@ -182,15 +172,6 @@ public class PlayerController : MonoBehaviour
         inputInteract = ""; //can't interact anymore
         am.SetTrigger("death"); //play death animation
         Invoke("GameOver", 1); //call GameOver() after one second
-    }
-
-    /**
-     * Called from within the animator to turn off the sprite after the death animation.
-     * Without this, the death animation will loop.
-     */
-    public void EndDeathAnimation()
-    {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     /**
