@@ -2,26 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Class for a plant that grows when in sunlight
+ */
 public class GrowingPlant : MonoBehaviour {
     Animator anim;
 
-	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
     }
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
 
+    /**
+     * Grows the plant when light is touching it
+     */
     public void Grow()
     {
-        anim.SetTrigger("LightTouching");
+        if (anim.gameObject.activeSelf) {
+            anim.SetTrigger("LightTouching");
+        }
     }
 
+    /**
+     * Shrinks the plant back to smallest size
+     * TODO 2018-10-03: Detect when to shrink
+     */
     public void Shrink()
     {
-
+        anim.ResetTrigger("LightTouching");
     }
 }
