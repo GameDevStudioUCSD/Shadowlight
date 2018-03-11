@@ -8,8 +8,6 @@ TagManager:
   - LightDoor
   - ShadowDoor
   - GameOverScreen
-  - LightPlayer
-  - ShadowPlayer
   layers:
   - Default
   - TransparentFX
