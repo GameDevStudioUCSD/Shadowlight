@@ -844,6 +844,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4322233561636760, guid: f68ae207b31064f8685ff91932b5f253, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -891,6 +896,46 @@ Prefab:
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1802739677}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Extinguish
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Extinguish
+      objectReference: {fileID: 0}
+    - target: {fileID: 114185923944983052, guid: f68ae207b31064f8685ff91932b5f253,
+        type: 2}
+      propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f68ae207b31064f8685ff91932b5f253, type: 2}
   m_IsPrefabParent: 0
