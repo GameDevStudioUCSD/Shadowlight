@@ -43,9 +43,6 @@ public class PlayerController : MonoBehaviour
     // The script from the interactable object
     private Interactable interactableScript = null;
 
-    // For debugging purposes
-    public bool invincible = false;
-
     private void Start()
     {
         Globals.gameOverScreen = GameObject.FindGameObjectWithTag("GameOverScreen");
@@ -177,17 +174,14 @@ public class PlayerController : MonoBehaviour
      */
     public virtual void Die()
     {
-        if (!invincible)
-        {
-            rb2d.velocity = Vector2.zero; //stop moving
-            rb2d.gravityScale = 0; //stop falling
-            gameObject.GetComponent<Collider2D>().enabled = false; //don't touch things anymore
-            inputHorizontal = ""; //input stops working
-            inputJump = ""; //can't jump anymore
-            inputInteract = ""; //can't interact anymore
-            am.SetTrigger("death"); //play death animation
-            Invoke("GameOver", 1); //call GameOver() after one second
-        }
+        rb2d.velocity = Vector2.zero; //stop moving
+        rb2d.gravityScale = 0; //stop falling
+        gameObject.GetComponent<Collider2D>().enabled = false; //don't touch things anymore
+        inputHorizontal = ""; //input stops working
+        inputJump = ""; //can't jump anymore
+        inputInteract = ""; //can't interact anymore
+        am.SetTrigger("death"); //play death animation
+        Invoke("GameOver", 1); //call GameOver() after one second
     }
 
     /**
