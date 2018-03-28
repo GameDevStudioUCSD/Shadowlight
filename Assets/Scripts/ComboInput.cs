@@ -14,8 +14,10 @@ public class ComboInput : MonoBehaviour
     private int value;
     [SerializeField]
     private GameObject[] objects;
+    
     // Each object sends a value to the "unlockable" object, which will perform
     // an action when its total value reaches over its assigned threshold
+    
     // Send a value to the assigned unlockable object
     public void sendValue(GameObject obj)
     {
