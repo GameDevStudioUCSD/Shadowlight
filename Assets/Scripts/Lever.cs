@@ -51,7 +51,7 @@ public class Lever : MonoBehaviour {
      * Switches the current state to the other state and invokes the event
      * associated with that state.
      */
-    void Toggle()
+    public void Toggle()
     {
         // If toggled left, switch to right
         if(left)
@@ -67,23 +67,5 @@ public class Lever : MonoBehaviour {
             animator.Play("ToggleLeft");
         }
         left = !left;
-    }
-
-    // Because OnTriggerStay2D was only being called when collider was moving
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // Check that only a player object can interact with the lever
-        if (other.GetComponent<PlayerController>())
-        {
-            inRange = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.GetComponent<PlayerController>())
-        {
-            inRange = false;
-        }
     }
 }
