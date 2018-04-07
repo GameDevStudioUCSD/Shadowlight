@@ -21,8 +21,14 @@ public class PlayerController : MonoBehaviour
     // Controls the jump action.
     private string inputJump = "";
 
-    // Controlls the interact action
+    // Controls the interact action
     private string inputInteract = "";
+
+    // Controls the climbing up action
+    private string inputClimbUp = "";
+
+    // Controls the climbing down action
+    private string inputClimbDown = "";
 
     // How fast should the character move horizontally.
     public float horizontalSpeed = 5.0f;
@@ -43,6 +49,9 @@ public class PlayerController : MonoBehaviour
     // The script from the interactable object
     private Interactable interactableScript = null;
 
+    private GrowingPlant plant = null;
+    private bool isClimbing = false;
+
     private void Start()
     {
         Globals.gameOverScreen = GameObject.FindGameObjectWithTag("GameOverScreen");
@@ -52,6 +61,8 @@ public class PlayerController : MonoBehaviour
             inputHorizontal = "Light Horizontal";
             inputJump = "Light Jump";
             inputInteract = "Light Interact";
+            inputClimbUp = "Light Climb Up";
+            inputClimbDown = "Light Climb Down";
             Globals.lightPlayer = this.gameObject;
         }
         else if (lightOrShadow == PlayerType.Shadow)
@@ -59,6 +70,8 @@ public class PlayerController : MonoBehaviour
             inputHorizontal = "Shadow Horizontal";
             inputJump = "Shadow Jump";
             inputInteract = "Shadow Interact";
+            inputClimbUp = "Shadow Climb Up";
+            inputClimbDown = "Shadow Climb Down";
             Globals.shadowPlayer = this.gameObject;
         }
 
@@ -97,24 +110,78 @@ public class PlayerController : MonoBehaviour
             // Add a feeling of inertia
             if (Input.GetButtonDown(inputJump))
             {
-                if (IsGrounded())
+                if (IsGrounded() && !am.GetBool("climbing"))
                 {
                     tmpVelocity.y = jumpForce;
                     am.SetTrigger("jump");
                 }
             }
 
+            // Climbing action
+            ClimbCheck(); 
+            Climb(transform.position.y);
+
             // Reset Key
             if (Input.GetKeyDown(KeyCode.R)) Reload();
 
-            am.SetBool("moving", tmpVelocity.x != 0);
-            am.SetFloat("yVelocity", tmpVelocity.y);
-
-            rb2d.velocity = tmpVelocity;
+            if (!am.GetBool("climbing"))
+            {
+                am.SetBool("moving", tmpVelocity.x != 0);
+                am.SetFloat("yVelocity", tmpVelocity.y);
+                rb2d.velocity = tmpVelocity;
+            }
 
             // Check if player can interact with object
-            if(interactableScript != null && Input.GetButtonDown(inputInteract)) {
+            if (interactableScript != null && Input.GetButtonDown(inputInteract)) {
                 interactableScript.interact.Invoke();
+            }
+        }
+    }
+
+    /** Determine if player should be climbing a plant */
+    // TODO 2018-03-31: Fix bug where double jump is allowed over plant due to collider
+    // TODO 2018-03-31: Fix climbing before leaving jumping or falling animation 
+    // TODO 2018-03-31: Cut animation short?
+    private void ClimbCheck()
+    {
+        float startY = transform.position.y;
+        if (plant != null && Input.GetButtonDown(inputInteract) && rb2d.velocity.y == 0 && rb2d.velocity.y > -0.0001 && !am.GetBool("jump"))
+        {
+            Debug.Log("start climbing");
+            isClimbing = true;
+            am.SetBool("climbing", isClimbing);
+        }
+
+    }
+
+    /** Climb a plant */
+    private void Climb(float startY)
+    {
+        if (plant != null && isClimbing)
+        {
+            rb2d.gravityScale = 0.0f;
+
+            if (Input.GetButton(inputClimbUp))
+            {
+                am.SetTrigger("climbing-moving");
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+            }
+            if (Input.GetButton(inputClimbDown))
+            {
+                if (transform.position.y >= startY)
+                {
+                    Debug.Log("climbing now");
+                    Debug.Log(transform.position.y);
+                    Debug.Log(startY);
+                    am.SetTrigger("climbing-moving");
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+                }
+                if (Input.GetButton(inputHorizontal))
+                {
+                    Debug.Log("stop climbing");
+                    isClimbing = false;
+                    am.SetBool("climbing", isClimbing);
+                }
             }
         }
     }
@@ -122,7 +189,6 @@ public class PlayerController : MonoBehaviour
     /** Checks if there is ground underneath the object */
     private bool IsGrounded()
     {
-
         // Casts rays from the center of the object downward to check for ground
         Vector2 position = transform.TransformPoint(GetComponent<BoxCollider2D>().offset);
         Vector2 direction = Vector2.down;
@@ -205,6 +271,13 @@ public class PlayerController : MonoBehaviour
             indicator.SetActive(true);
             interactableScript = interactable;
         }
+
+        GrowingPlant plantObject = collision.GetComponent<GrowingPlant>();
+
+        if (plantObject != null)
+        {
+            plant = plantObject;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -214,6 +287,14 @@ public class PlayerController : MonoBehaviour
         {
             indicator.SetActive(false);
             interactableScript = null;
+        }
+
+        // Exit climbing
+        if (collision.GetComponent<GrowingPlant>() != null)
+        {
+            am.SetBool("climbing", false);
+            rb2d.gravityScale = 1.0f;
+            plant = null;
         }
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
  */
 public class GrowingPlant : MonoBehaviour {
     Animator anim;
+    public bool inRange;
 
 	void Start () {
         anim = GetComponent<Animator>();
@@ -33,5 +34,10 @@ public class GrowingPlant : MonoBehaviour {
     public void Shrink()
     {
         anim.ResetTrigger("LightTouching");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        inRange = true;
     }
 }
