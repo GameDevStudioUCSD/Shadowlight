@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (RaycastHit2D ray in raycast)
         {
-            if (ray.collider != null && ray.collider.gameObject != this.gameObject)
+            if (ray.collider != null && ray.collider.gameObject != this.gameObject && !ray.collider.isTrigger)
                 return true;
         }
         return false;

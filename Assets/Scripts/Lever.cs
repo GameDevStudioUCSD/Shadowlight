@@ -68,4 +68,22 @@ public class Lever : MonoBehaviour {
         }
         left = !left;
     }
+
+    // Because OnTriggerStay2D was only being called when collider was moving
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Check that only a player object can interact with the lever
+        if (other.GetComponent<PlayerController>())
+        {
+            inRange = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            inRange = false;
+        }
+    }
 }
