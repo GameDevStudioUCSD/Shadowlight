@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
     public void GameOver()
     {
         Globals.gameOverScreen.GetComponent<SpriteRenderer>().enabled = true;
+        Globals.gameOverScreen.GetComponentInChildren<Canvas>().enabled = true;
         Invoke("Reload", 3); //call Reload() after three seconds
     }
 
