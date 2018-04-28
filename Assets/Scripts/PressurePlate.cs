@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PressurePlate : MonoBehaviour {
 
-    private bool pressed = false;
+    public int objectsPressing = 0;
     public UnityEvent platePressed = null;
     public UnityEvent plateUnpressed = null;
 
@@ -24,21 +24,40 @@ public class PressurePlate : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!pressed)
+        if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
         {
-            if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
-            {
-                pressed = true;
-                platePressed.Invoke();
+            objectsPressing++;
+            platePressed.Invoke();
 
-                renderer.sprite = pressedSprite;
-            }
+            renderer.sprite = pressedSprite;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.GetComponent<Rigidbody2D>().velocity.y < 0)
+        {
+            objectsPressing++;
+            platePressed.Invoke();
+
+            renderer.sprite = pressedSprite;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (objectsPressing > 0)
+        {
+            objectsPressing--;
+            plateUnpressed.Invoke();
+
+            renderer.sprite = unpressedSprite;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(pressed) {
-            pressed = false;
+        if(objectsPressing > 0) {
+            objectsPressing--;
             plateUnpressed.Invoke();
 
             renderer.sprite = unpressedSprite;
