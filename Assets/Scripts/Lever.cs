@@ -15,7 +15,6 @@ public class Lever : MonoBehaviour {
     public UnityEvent rightMode = null;
     private Animator animator = null;
     private bool left = true;
-    private bool inRange = false;
 
     private void Start()
     {
@@ -34,16 +33,6 @@ public class Lever : MonoBehaviour {
         else
         {
             rightMode.Invoke();
-        }
-    }
-
-    private void Update()
-    {
-        // Player must be in range to interact with the lever
-        // TODO 2018-01-29: Change to interact button
-        if (inRange == true && Input.GetKeyDown(KeyCode.Q))
-        {
-            Toggle();
         }
     }
 
