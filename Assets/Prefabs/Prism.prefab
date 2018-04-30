@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4365291525064736}
   - component: {fileID: 212541237832771266}
   - component: {fileID: 95431078504731516}
+  - component: {fileID: 114218953748208178}
+  - component: {fileID: 114807970525568182}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -58,6 +60,44 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114218953748208178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385190085637936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4062e5665b7374d2dacda885a2690b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114807970525568182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385190085637936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3f59c8d062a449abeca26dbb4fc4e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114218953748208178}
+        m_MethodName: SwitchPositions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212541237832771266
 SpriteRenderer:
   m_ObjectHideFlags: 1
