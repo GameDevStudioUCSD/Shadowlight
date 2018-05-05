@@ -18,7 +18,8 @@ public class MovingPlatform : MonoBehaviour {
     private bool nextMoveIsBack = false;
     private Animator animator;
 
-	public Sprite platformCircle;
+	public GameObject sliderCircle;
+	public GameObject slider;
 
     void Start () {
         animator = gameObject.GetComponent<Animator>();
@@ -31,12 +32,12 @@ public class MovingPlatform : MonoBehaviour {
         }
 
 		foreach (Vector3 position3d in positions3d) {
-			GameObject circle = new GameObject ();
-			circle.AddComponent<SpriteRenderer> ();
-			SpriteRenderer sr = circle.GetComponent<SpriteRenderer> ();
-			sr.sprite = platformCircle;
-			circle.transform.position = position3d;
+			Instantiate (sliderCircle, position3d, Quaternion.identity, null);
 		}
+
+		LineRenderer lr = slider.GetComponent<LineRenderer> ();
+		lr.positionCount = positions3d.Count;
+		lr.SetPositions (positions3d.ToArray());
     }
 	
 	void Update () {
