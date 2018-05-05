@@ -10,11 +10,13 @@ public class MovingWall : MonoBehaviour {
     private Vector3 movedPosition;
     private bool moved = false;
     private bool moving = false;
+    Rigidbody2D rb = null;
     
 	void Start () {
         //records the unmoved position of the wall
         originalPosition = transform.position;
         movedPosition = originalPosition + moveOffset;
+        rb = transform.GetComponent<Rigidbody2D>();
 	}
 	
 	void Update () {
@@ -23,7 +25,7 @@ public class MovingWall : MonoBehaviour {
             if (!moved) {
                 //still moving
                 if (!transform.position.Equals(movedPosition)) {
-                    transform.position = Vector3.MoveTowards(transform.position, movedPosition, moveSpeed);
+                    rb.MovePosition(Vector3.MoveTowards(transform.position, movedPosition, moveSpeed));
                 }
                 //done moving
                 else {
@@ -35,7 +37,7 @@ public class MovingWall : MonoBehaviour {
             else {
                 //still moving
                 if (!transform.position.Equals(originalPosition)) {
-                    transform.position = Vector3.MoveTowards(transform.position, originalPosition, moveSpeed);
+                    rb.MovePosition(Vector3.MoveTowards(transform.position, originalPosition, moveSpeed));
                 }
                 //done moving
                 else {
