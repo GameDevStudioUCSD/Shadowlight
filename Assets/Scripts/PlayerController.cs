@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButton(inputClimbUp))
             {
                 am.SetBool("climbing-motion", true);
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.02f, transform.position.z);
             }
             else if (Input.GetButton(inputClimbDown))
             {
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
                 if (transform.position.y >= startY)
                 {
                     am.SetBool("climbing-motion", true);
-                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
                 }
                 // Get off the plant and stop climbing
                 if (Input.GetButton(inputHorizontal))
