@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 /**
  * Responsible for listening to inputs and moving the character.
  */
-[RequireComponent(typeof(Animator), typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
 
@@ -33,8 +36,9 @@ public class PlayerController : MonoBehaviour
     // Amount of force needed to kill the player by crushing
     private float crushThreshold = 1000f;
 
-    private Rigidbody2D rb2d = null;
     private Animator am = null;
+    private BoxCollider2D bc2d = null;
+    private Rigidbody2D rb2d = null;
     private SpriteRenderer sr = null;
 
     // The interactable object indicator
@@ -42,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
     // The script from the interactable object
     private Interactable interactableScript = null;
+
+    private ContactFilter2D jumpRaycastFilter;
+    private RaycastHit2D[] jumpRaycastResult = null;
 
     private void Start()
     {
@@ -69,6 +76,13 @@ public class PlayerController : MonoBehaviour
         indicator = transform.Find("Indicator").gameObject;
 
         CameraZoom.instance.RegisterPlayer(transform);
+
+        bc2d = GetComponent<BoxCollider2D>();
+        // Do not filter anything except triggers.
+        jumpRaycastFilter.NoFilter();
+        jumpRaycastFilter.useTriggers = false;
+        // We only need the existence of something.
+        jumpRaycastResult = new RaycastHit2D[1];
     }
 
     private void Update()
@@ -122,42 +136,22 @@ public class PlayerController : MonoBehaviour
     /** Checks if there is ground underneath the object */
     private bool IsGrounded()
     {
+        // Calculate the ray.
+        // It is basically a ray from left bottom to right bottom, with a little
+        // bit of offset.
+        Bounds bounds = bc2d.bounds;
+        Vector2 origin = new Vector2(bounds.min.x, bounds.min.y - 0.05f);
+        float distance = bounds.max.x - bounds.min.x;
 
-        // Casts rays from the center of the object downward to check for ground
-        Vector2 position = transform.TransformPoint(GetComponent<BoxCollider2D>().offset);
-        Vector2 direction = Vector2.down;
-        // The ray's length is slightly longer than half the size of the object
-        float length = (GetComponent<BoxCollider2D>().bounds.size.y / 2) + 0.1f;
-        // Offset the left and right rays by half of the character's size
-        float offset = (GetComponent<BoxCollider2D>().bounds.size.x / 2) - 0.01f;
-
-        Vector2 temp = new Vector2(offset, 0);
-
-        // Cast three rays to check for ground collision
-        RaycastHit2D[] hitCenter = Physics2D.RaycastAll(position, direction, length);
-        RaycastHit2D[] hitRight = Physics2D.RaycastAll(position + temp, direction, length);
-        RaycastHit2D[] hitLeft = Physics2D.RaycastAll(position - temp, direction, length);
-
-        // Checks each Raycast to see if it collides with ground
-        if (rayCastCheck(hitCenter) || rayCastCheck(hitRight) || rayCastCheck(hitLeft))
-        {
-            return true;
-        }
-        return false;
+        // We only want to know something is there.
+        return 0 != Physics2D.Raycast(
+            origin,
+            Vector2.right,
+            jumpRaycastFilter,
+            jumpRaycastResult,
+            distance
+        );
     }
-
-
-    /** Checks if Raycast collides with an object that's not the self object*/
-    private bool rayCastCheck(RaycastHit2D[] raycast)
-    {
-        foreach (RaycastHit2D ray in raycast)
-        {
-            if (ray.collider != null && ray.collider.gameObject != this.gameObject)
-                return true;
-        }
-        return false;
-    }
-
 
     /**
      * Called when the Shadow player touches the light, or any other time the player is killed.
@@ -180,6 +174,7 @@ public class PlayerController : MonoBehaviour
     public void GameOver()
     {
         Globals.gameOverScreen.GetComponent<SpriteRenderer>().enabled = true;
+        Globals.gameOverScreen.GetComponentInChildren<Canvas>().enabled = true;
         Invoke("Reload", 3); //call Reload() after three seconds
     }
 

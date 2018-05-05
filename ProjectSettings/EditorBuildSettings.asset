@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3.unity
     guid: 836360be24f22fb4ab4dbdd923a014d5
   - enabled: 1
+    path: Assets/Scenes/CastleLevel.unity
+    guid: 4beb41a43c1344315a754f13922a4c8e
+  - enabled: 1
     path: Assets/Scenes/ThanksForPlaying.unity
     guid: e153243c84f77e945a70f235bb780b4a

@@ -5,16 +5,23 @@ using UnityEngine;
 public class MovingWall : MonoBehaviour {
     public Vector3 moveOffset;
     public float moveSpeed = 1;
+    public bool reverse = false;
 
     private Vector3 originalPosition;
     private Vector3 movedPosition;
     private bool moved = false;
     private bool moving = false;
+
     
 	void Start () {
         //records the unmoved position of the wall
         originalPosition = transform.position;
         movedPosition = originalPosition + moveOffset;
+
+        if (reverse)
+        {
+            movedPosition = originalPosition - moveOffset;
+        }
 	}
 	
 	void Update () {

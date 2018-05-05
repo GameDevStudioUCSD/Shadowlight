@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 public class PressurePlate : MonoBehaviour {
 
-    private bool pressed = false;
+    private int numObjects = 0; // Number of objects on the plate
     public UnityEvent platePressed = null;
     public UnityEvent plateUnpressed = null;
 
@@ -24,11 +24,11 @@ public class PressurePlate : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!pressed)
+        numObjects++;
+        if (numObjects == 1)
         {
             if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
             {
-                pressed = true;
                 platePressed.Invoke();
 
                 renderer.sprite = pressedSprite;
@@ -37,8 +37,8 @@ public class PressurePlate : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(pressed) {
-            pressed = false;
+        numObjects--;
+        if(numObjects == 0) {
             plateUnpressed.Invoke();
 
             renderer.sprite = unpressedSprite;
