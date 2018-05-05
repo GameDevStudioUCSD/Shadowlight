@@ -16,7 +16,6 @@ public class Lever : MonoBehaviour {
     private Animator animator = null;
     public bool startNoAction = false;
     private bool left = true;
-    private bool inRange = false;
 
     private void Start()
     {
@@ -45,21 +44,11 @@ public class Lever : MonoBehaviour {
         }
     }
 
-    private void Update()
-    {
-        // Player must be in range to interact with the lever
-        // TODO 2018-01-29: Change to interact button
-        if (inRange == true && Input.GetKeyDown(KeyCode.Q))
-        {
-            Toggle();
-        }
-    }
-
     /**
      * Switches the current state to the other state and invokes the event
      * associated with that state.
      */
-    void Toggle()
+    public void Toggle()
     {
         // If toggled left, switch to right
         if(left)
@@ -74,23 +63,5 @@ public class Lever : MonoBehaviour {
             animator.Play("ToggleLeft");
         }
         left = !left;
-    }
-
-    // Because OnTriggerStay2D was only being called when collider was moving
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // Check that only a player object can interact with the lever
-        if (other.GetComponent<PlayerController>())
-        {
-            inRange = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.GetComponent<PlayerController>())
-        {
-            inRange = false;
-        }
     }
 }
