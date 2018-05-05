@@ -43,7 +43,7 @@ public class Lever : MonoBehaviour {
     public void Toggle()
     {
         // If toggled left, switch to right
-        if(left)
+        if (left)
         {
 
             rightMode.Invoke();
@@ -56,5 +56,45 @@ public class Lever : MonoBehaviour {
             animator.Play("ToggleLeft");
         }
         left = !left;
+    }
+
+    public void HighlightTargets() 
+    {
+        if (left)
+        {
+            FindAllTargets(rightMode);
+        }
+        else 
+        {
+            FindAllTargets(leftMode);
+        }
+    }
+
+    void FindAllTargets(UnityEvent unityevent)
+    {
+        // Draws a line to all targets that the interatable object will affect
+        for (int i = 0; i < unityevent.GetPersistentEventCount(); i++)
+        {
+            GameObject target = ((Component)unityevent.GetPersistentTarget(i)).gameObject;
+            Debug.Log(unityevent.GetPersistentTarget(0));    // Object is not null
+            Debug.Log(target);  // GameObject is null
+            DrawLine(transform.position, target.transform.position, Color.blue, 5f);
+
+        }
+    }
+
+    void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+        lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+        lr.startColor = color;
+        lr.startWidth = 0.1f;
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        lr.sortingOrder = 999;
+        Destroy(myLine, duration);
     }
 }

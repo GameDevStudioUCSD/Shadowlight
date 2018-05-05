@@ -199,6 +199,7 @@ public class PlayerController : MonoBehaviour
         {
             indicator.SetActive(true);
             interactableScript = interactable;
+            interactableScript.highlightTargets.Invoke();
         }
     }
 

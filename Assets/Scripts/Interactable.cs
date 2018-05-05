@@ -9,4 +9,5 @@ using UnityEngine.Events;
  */
 public class Interactable : MonoBehaviour {
     public UnityEvent interact = null;
+    public UnityEvent highlightTargets = null;
 }
