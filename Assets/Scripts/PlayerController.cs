@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButton(inputClimbUp))
             {
                 am.SetBool("climbing-motion", true);
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.02f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z);
             }
             else if (Input.GetButton(inputClimbDown))
             {
@@ -290,10 +290,20 @@ public class PlayerController : MonoBehaviour
         if (collision.GetComponent<GrowingPlant>() != null)
         {
             isClimbing = false;
-            am.SetBool("climbing", false);
             am.SetBool("climbing-motion", false);
-            rb2d.gravityScale = 1.0f;
-            plant = null;
+
+            if (!Input.GetButton(inputJump))
+            {
+                am.SetBool("climbing", false);
+                rb2d.gravityScale = 1.0f;
+                plant = null;
+            }
+            else if(Input.GetButton(inputJump) && Input.GetButtonDown(inputHorizontal))
+            {
+                // Don't stop climbing immediately if exiting from the top of plant
+                rb2d.gravityScale = 1.0f;
+                plant = null;
+            }
         }
     }
 }
