@@ -1270,6 +1270,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 232814216409656818, guid: 447f18fb9fdcf0d40821e1e0a05569bb,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -5.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 232814216409656818, guid: 447f18fb9fdcf0d40821e1e0a05569bb,
+        type: 2}
+      propertyPath: m_Distance
+      value: 4.6099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 232814216409656818, guid: 447f18fb9fdcf0d40821e1e0a05569bb,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 12.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 447f18fb9fdcf0d40821e1e0a05569bb, type: 2}
   m_IsPrefabParent: 0
@@ -1486,7 +1501,7 @@ Prefab:
     - target: {fileID: 114426472496392748, guid: c2d0a2d654b9e294fba00d19167fa58d,
         type: 2}
       propertyPath: positions.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4017713283560966, guid: c2d0a2d654b9e294fba00d19167fa58d, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1542,7 +1557,7 @@ Prefab:
     - target: {fileID: 114426472496392748, guid: c2d0a2d654b9e294fba00d19167fa58d,
         type: 2}
       propertyPath: moveSpeed
-      value: 0.05
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 114426472496392748, guid: c2d0a2d654b9e294fba00d19167fa58d,
         type: 2}
