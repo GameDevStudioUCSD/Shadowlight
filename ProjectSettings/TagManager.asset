@@ -42,20 +42,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 897338937
     locked: 0
   - name: Background Prop
     uniqueID: 926888315
     locked: 0
-  - name: Wall and Platform
-    uniqueID: 4197213185
-    locked: 0
   - name: Movable Wall and Platform
     uniqueID: 982228999
+    locked: 0
+  - name: Wall and Platform
+    uniqueID: 4197213185
     locked: 0
   - name: Background Interactable
     uniqueID: 2080237177
@@ -68,4 +65,7 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 4182163861
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
