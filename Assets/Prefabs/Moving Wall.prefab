@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveOffset: {x: 0, y: -6.16, z: 0}
   moveSpeed: 0.2
+  reverse: 0
 --- !u!212 &212316424535927528
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -111,9 +112,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -11
+  m_SortingLayerID: 982228999
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: df3a5ec3b83782f4f94e68e8ddaabf5f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
