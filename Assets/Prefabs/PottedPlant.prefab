@@ -41,7 +41,7 @@ Transform:
   m_GameObject: {fileID: 1510751426466342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,7 +82,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6, y: 1.88}
+    oldSize: {x: 7.2, y: 3.76}
     newSize: {x: 3.6, y: 1.88}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -90,14 +90,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.7256688, y: -0.19487762}
-      - {x: 0.6720611, y: 0.04353571}
-      - {x: -0.78464484, y: -0.019156456}
-      - {x: -0.7675264, y: -0.21253538}
-      - {x: -0.64368415, y: -0.22639847}
-      - {x: -0.50340843, y: -0.90367985}
-      - {x: 0.51014066, y: -0.8982053}
-      - {x: 0.6375787, y: -0.23498344}
+    - - {x: 1.4180367, y: -0.4447012}
+      - {x: 1.4909422, y: 0.005815506}
+      - {x: -1.5555291, y: 0.009394646}
+      - {x: -1.5027218, y: -0.4266696}
+      - {x: -1.2147098, y: -0.4333949}
+      - {x: -0.9673667, y: -1.781631}
+      - {x: 0.9740982, y: -1.7904325}
+      - {x: 1.2728443, y: -0.4562559}
 --- !u!95 &95041306372526162
 Animator:
   serializedVersion: 3
@@ -272,7 +272,7 @@ DistanceJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -5.37, y: 12.677189}
+  m_ConnectedAnchor: {x: 0, y: 5}
   m_AutoConfigureDistance: 1
-  m_Distance: 4.5871887
+  m_Distance: 5
   m_MaxDistanceOnly: 0
