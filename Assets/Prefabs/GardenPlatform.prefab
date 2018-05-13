@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4896962146075042}
   - component: {fileID: 212323866037423562}
   - component: {fileID: 61133320834011904}
-  - component: {fileID: 114671702958497720}
   m_Layer: 0
   m_Name: GardenPlatform
   m_TagString: Untagged
@@ -67,18 +66,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.8}
   m_EdgeRadius: 0
---- !u!114 &114671702958497720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1446174499075442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c074afacdaf75014fa83f0ae56b133e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 1.2, y: 0.8}
 --- !u!212 &212323866037423562
 SpriteRenderer:
   m_ObjectHideFlags: 1
