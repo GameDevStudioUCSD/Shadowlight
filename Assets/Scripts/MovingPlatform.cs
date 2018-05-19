@@ -16,13 +16,18 @@ public class MovingPlatform : MonoBehaviour {
     public State movementState = State.Stopped; //how platform is currently moving
     public bool looping = false; //turn on to make the platform move back and forth
     private bool nextMoveIsBack = false;
+    public GameObject gear;
     private Animator animator;
 
 	public GameObject sliderCircle;
 	public GameObject slider;
 
+    /**
+     * Makes the gear a constant size, regardless of the scaling of the parent
+     */
+    
     void Start () {
-        animator = gameObject.GetComponent<Animator>();
+        animator = gear.GetComponent<Animator>();
 
         positions3d = new List<Vector3>();
         positions3d.Add(transform.position); //starting position is part of the List
