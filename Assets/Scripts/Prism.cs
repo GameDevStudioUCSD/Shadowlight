@@ -23,14 +23,14 @@ public class Prism : MonoBehaviour {
     }
 
     public void SwitchPositions() {
-        animator.Play("Active");
-        Invoke("MovePlayers", 1.4f);
-
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Inactive"))
+        {
+            animator.Play("Active");
+            Invoke("MovePlayers", 1.4f);
+        }
     }
 
     void MovePlayers() {
-        Flash();
-
         // Find Light and Shadow in the scene
         Transform lightPlayer = GameObject.Find("LightPlayer").transform;
         Transform shadowPlayer = GameObject.Find("ShadowPlayer").transform;
@@ -43,9 +43,5 @@ public class Prism : MonoBehaviour {
         Vector3 lightPlayerPosition = lightPlayer.position;
         lightPlayer.position = shadowPlayer.position;
         shadowPlayer.position = lightPlayerPosition;
-    }
-
-    void Flash() {
-        
     }
 }
