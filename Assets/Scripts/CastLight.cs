@@ -37,9 +37,6 @@ public class CastLight : MonoBehaviour {
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
 
-        Globals.darkness = GameObject.FindGameObjectWithTag("Darkness");
-        Globals.darkness.GetComponent<MeshRenderer>().enabled = true;
-
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
 
@@ -120,7 +117,7 @@ public class CastLight : MonoBehaviour {
                     }
                 }
             }
-            
+
             viewPoints.Add(newViewCast.point);
             oldViewCast = newViewCast;
         }
