@@ -24,24 +24,24 @@ public class PressurePlate : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        numObjects++;
-        if (numObjects == 1)
+        if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
         {
-            if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
-            {
-                platePressed.Invoke();
-
-                renderer.sprite = pressedSprite;
-            }
+            numObjects++;
+            platePressed.Invoke();
+            renderer.sprite = pressedSprite;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        numObjects--;
-        if(numObjects == 0) {
-            plateUnpressed.Invoke();
-
-            renderer.sprite = unpressedSprite;
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (numObjects > 0)
+        {
+            numObjects--;
+            if (numObjects == 0)
+            {
+                plateUnpressed.Invoke();
+                renderer.sprite = unpressedSprite;
+            }
         }
     }
 }
