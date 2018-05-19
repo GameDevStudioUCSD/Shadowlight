@@ -57,11 +57,11 @@ TagManager:
   - name: Background Interactable
     uniqueID: 2080237177
     locked: 0
-  - name: Interactable
-    uniqueID: 3134181539
-    locked: 0
   - name: Door
     uniqueID: 2895711617
+    locked: 0
+  - name: Interactable
+    uniqueID: 3134181539
     locked: 0
   - name: Character
     uniqueID: 4182163861
