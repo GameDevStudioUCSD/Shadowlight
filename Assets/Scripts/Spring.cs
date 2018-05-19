@@ -5,6 +5,9 @@ using UnityEngine.Assertions;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Spring : MonoBehaviour {
+    [SerializeField]
+    private float force = 0;
+
     private Animator animator = null;
 
 	// Use this for initialization
@@ -24,8 +27,8 @@ public class Spring : MonoBehaviour {
         if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
         {
             animator.Play("Boing");
+            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(-rb.velocity.x, force);
         }
-        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(-rb.velocity.x, -rb.velocity.y);
     }
 }
