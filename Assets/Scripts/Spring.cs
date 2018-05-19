@@ -21,11 +21,10 @@ public class Spring : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("boing");
-        //if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
-        //{
+        if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
+        {
             animator.Play("Boing");
-        //}
+        }
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-rb.velocity.x, -rb.velocity.y);
     }
