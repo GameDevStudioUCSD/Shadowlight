@@ -26,7 +26,7 @@ public class Prism : MonoBehaviour {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Inactive"))
         {
             animator.Play("Active");
-            Invoke("MovePlayers", 1.4f);
+            Invoke("MovePlayers", 0.7f);
         }
     }
 
