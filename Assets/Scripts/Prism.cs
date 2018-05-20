@@ -11,15 +11,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Prism : MonoBehaviour {
     private Animator animator = null;
-    private SpriteRenderer flashSprite = null;
 
     void Start() {
         animator = GetComponent<Animator>();
         // Should not be null because of the RequireComponent attribute.
         Assert.IsNotNull(animator, name + " requires an Animator component.");
-
-        GameObject flash = flash = transform.Find("Flash").gameObject;
-        flashSprite = flash.GetComponent<SpriteRenderer>();
     }
 
     public void SwitchPositions() {

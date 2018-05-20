@@ -22,19 +22,27 @@ public class Candle : MonoBehaviour {
      *  Turns on this candle's light scripting.
      */
     public void Light() {
-        castLight.SetActive(true); //turn on candle's light
-        lightScript.enabled = true; //start calculating mesh shape
-        animator.SetTrigger("Light");
-        lightEvent.Invoke();
+        if (!isLit)
+        {
+            castLight.SetActive(true); //turn on candle's light
+            lightScript.enabled = true; //start calculating mesh shape
+            animator.SetTrigger("Light");
+            lightEvent.Invoke();
+            isLit = true;
+        }
     }
 
     /**
      *  Turns off this candle's light scripting.
      */
     public void Extinguish() {
-        castLight.SetActive(false); //turn off light
-        lightScript.enabled = false; //stop calculating mesh shape (for efficiency)
-        animator.SetTrigger("Extinguish");
-        extinguishEvent.Invoke();
+        if (isLit)
+        {
+            castLight.SetActive(false); //turn off light
+            lightScript.enabled = false; //stop calculating mesh shape (for efficiency)
+            animator.SetTrigger("Extinguish");
+            extinguishEvent.Invoke();
+            isLit = false;
+        }
     }
 }
