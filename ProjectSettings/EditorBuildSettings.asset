@@ -12,14 +12,50 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoLevel.unity
     guid: 862847e4e08ad9843a6801d802ba737e
   - enabled: 1
+    path: Assets/Scenes/AliTestLevel.unity
+    guid: b6f53d19ff3fa9a40a27a0e1162cad9c
+  - enabled: 1
+    path: Assets/Scenes/AliTestLevel2.unity
+    guid: 2ff1d78f209f3994c9394eb3a3fcc838
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 65888e1cd260cf74094d865b649b360f
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: 836360be24f22fb4ab4dbdd923a014d5
   - enabled: 1
+    path: Assets/Scenes/Castle-MovingWalls.unity
+    guid: e74dee7dd0c79304d802ea53b0cbc397
+  - enabled: 1
     path: Assets/Scenes/CastleLevel.unity
     guid: 4beb41a43c1344315a754f13922a4c8e
+  - enabled: 0
+    path: Assets/Scenes/GardenLevel1.unity
+    guid: f8bc9d425f77ea5469e22f85825ed485
+  - enabled: 1
+    path: Assets/Scenes/GardenLevel2.unity
+    guid: 8c2c0ff567ce709418039d3170c53a86
+  - enabled: 1
+    path: Assets/Scenes/Sung1.unity
+    guid: e2bf0fef18f66a54ca023f701eaa8f30
+  - enabled: 1
+    path: Assets/Scenes/CaveLevel1.unity
+    guid: 2a8b22862d05f3647b7e234651df999d
+  - enabled: 1
+    path: Assets/Scenes/SpringLevel.unity
+    guid: 668f0d1fd71834b6b8179995ec117a90
+  - enabled: 1
+    path: Assets/Scenes/AliTestLevel3.unity
+    guid: 6ec9d1a364f6ede40a29ad5da54e1a86
+  - enabled: 1
+    path: Assets/Scenes/Level_SpinToWin.unity
+    guid: 338d501f00b2a8942a8b0e17bdcd7f8b
+  - enabled: 1
+    path: Assets/Scenes/customLevel(Danny).unity
+    guid: 784d80f3107ff02449ba138671282954
   - enabled: 1
     path: Assets/Scenes/ThanksForPlaying.unity
     guid: e153243c84f77e945a70f235bb780b4a
+  - enabled: 0
+    path: Assets/Scenes/Test.unity
+    guid: 5f978a063f9e57a40bf51309aab30936

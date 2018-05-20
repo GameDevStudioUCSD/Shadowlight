@@ -78,6 +78,10 @@ public class CastLight : MonoBehaviour {
             if (mirror && mirror.gameObject != this.gameObject) //prevents mirrors from keeping themselves active
                 mirror.Activate(this); //turns mirror light on
 
+            GrowingPlant vine = target.GetComponent<GrowingPlant>();
+            if (vine)
+                vine.Grow();
+
             ShadowPlayerObject shadowPlayer = target.GetComponent<ShadowPlayerObject>();
             if (shadowPlayer)
                 shadowPlayer.Die(); //game over
