@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D bc2d = null;
     private Rigidbody2D rb2d = null;
     private SpriteRenderer sr = null;
+    private bool hasDied = false;
 
     // The interactable object indicator
     private GameObject indicator = null;
@@ -158,14 +159,18 @@ public class PlayerController : MonoBehaviour
      */
     public virtual void Die()
     {
-        rb2d.velocity = Vector2.zero; //stop moving
-        rb2d.gravityScale = 0; //stop falling
-        gameObject.GetComponent<Collider2D>().enabled = false; //don't touch things anymore
-        inputHorizontal = ""; //input stops working
-        inputJump = ""; //can't jump anymore
-        inputInteract = ""; //can't interact anymore
-        am.SetTrigger("death"); //play death animation
-        Invoke("GameOver", 1); //call GameOver() after one second
+        if (!hasDied) {
+            rb2d.velocity = Vector2.zero; //stop moving
+            rb2d.gravityScale = 0; //stop falling
+            gameObject.GetComponent<Collider2D>().enabled = false; //don't touch things anymore
+            inputHorizontal = ""; //input stops working
+            inputJump = ""; //can't jump anymore
+            inputInteract = ""; //can't interact anymore
+            am.SetTrigger("death"); //play death animation
+            GetComponent<AudioSource>().Play();
+            hasDied = true;
+            Invoke("GameOver", 1); //call GameOver() after one second
+        }
     }
 
     /**

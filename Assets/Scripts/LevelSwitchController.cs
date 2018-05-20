@@ -14,6 +14,7 @@ public class LevelSwitchController : MonoBehaviour {
   private Bounds shadowDoorBounds;
     private GameObject lightDoor;
     private GameObject shadowDoor;
+    private bool hasLoaded = false;
 
   void Start() {
 
@@ -38,12 +39,14 @@ public class LevelSwitchController : MonoBehaviour {
 
     // This checks to make sure that the character is completely inside the
     // door's collider.
-    if (lightDoorBounds.Contains(lightPlayerBounds.min)
+    if (!hasLoaded && lightDoorBounds.Contains(lightPlayerBounds.min)
       && lightDoorBounds.Contains(lightPlayerBounds.max)
       && shadowDoorBounds.Contains(shadowPlayerBounds.min)
       && shadowDoorBounds.Contains(shadowPlayerBounds.max)) {
             lightDoor.GetComponent<Animator>().SetTrigger("Open");
             shadowDoor.GetComponent<Animator>().SetTrigger("Open");
+            lightDoor.GetComponent<AudioSource>().Play();
+            hasLoaded = true;
             //Globals.lightPlayer.GetComponent<PlayerController>().enabled = false;
             //Globals.shadowPlayer.GetComponent<PlayerController>().enabled = false;
             StartCoroutine("LoadScene", 0.5f);

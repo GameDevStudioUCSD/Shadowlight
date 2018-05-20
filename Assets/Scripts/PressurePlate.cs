@@ -15,9 +15,11 @@ public class PressurePlate : MonoBehaviour {
     public Sprite pressedSprite = null;
 
     private new SpriteRenderer renderer = null;
+    private AudioSource click;
 
     private void Start() {
         renderer = GetComponent<SpriteRenderer> ();
+        click = GetComponent<AudioSource>();
         Assert.IsNotNull(renderer, name + " should have SpriteRenderer");
         renderer.sprite = unpressedSprite;
     }
@@ -28,6 +30,7 @@ public class PressurePlate : MonoBehaviour {
         {
             numObjects++;
             platePressed.Invoke();
+            click.Play();
             renderer.sprite = pressedSprite;
         }
     }
