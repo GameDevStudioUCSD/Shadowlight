@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -704,16 +703,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4932810412547088, guid: ab6f195d4b5d8f64bad5baf4004aba82,
     type: 2}
   m_PrefabInternal: {fileID: 947260552}
---- !u!1 &264806148 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1252885842429292, guid: 6efae86420049e44b9fde9b0c1398c5d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1761834860}
---- !u!1 &272516186 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1836284607839486, guid: e95c21a958065954abf7cf5c3171ffc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1676413454}
 --- !u!1001 &282971130
 Prefab:
   m_ObjectHideFlags: 0
@@ -2589,9 +2578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0d76cc4ec0ff04393a1c89a6032161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: CastleLevel
-  lightPlayer: {fileID: 272516186}
-  shadowPlayer: {fileID: 264806148}
 --- !u!4 &996027799
 Transform:
   m_ObjectHideFlags: 0
@@ -4164,7 +4150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4776375151187404, guid: 96c5b1ef57a042c4db5e611c601c3d2e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 17.55
+      value: 17.45
       objectReference: {fileID: 0}
     - target: {fileID: 4776375151187404, guid: 96c5b1ef57a042c4db5e611c601c3d2e, type: 2}
       propertyPath: m_LocalPosition.z
