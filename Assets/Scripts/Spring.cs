@@ -9,10 +9,12 @@ public class Spring : MonoBehaviour {
     private float force = 0;
 
     private Animator animator = null;
+    private AudioSource boing;
 
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
+        boing = GetComponent<AudioSource>();
         // Should not be null because of the RequireComponent attribute.
         Assert.IsNotNull(animator, name + " requires an Animator component.");
 	}
@@ -27,6 +29,7 @@ public class Spring : MonoBehaviour {
         if (other.GetComponent<Rigidbody2D>().velocity.y < 0)
         {
             animator.Play("Boing");
+            boing.Play();
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(-rb.velocity.x, force);
         }

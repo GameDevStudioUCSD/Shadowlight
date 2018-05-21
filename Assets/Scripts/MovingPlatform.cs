@@ -82,11 +82,11 @@ public class MovingPlatform : MonoBehaviour {
                 if (looping) {
                     loopTimer = loopWaitTime; //reset wait timer
                     movementState = State.Waiting; //wait before moving back
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
                 else {
                     movementState = State.Stopped; //stop moving
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
             }
         }
@@ -97,11 +97,11 @@ public class MovingPlatform : MonoBehaviour {
                 if (looping) {
                     loopTimer = loopWaitTime; //reset wait timer
                     movementState = State.Waiting; //wait before moving back
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
                 else {
                     movementState = State.Stopped; //stop moving
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
             }
         }
@@ -129,7 +129,7 @@ public class MovingPlatform : MonoBehaviour {
         if (movementState == State.MovingForward) positionIndex -= 1;
         else if (movementState == State.MovingBack) positionIndex += 1;
         movementState = State.Stopped;
-        animator.SetBool("Moving", false);
+        if (animator) animator.SetBool("Moving", false);
     }
 
     /**
@@ -139,7 +139,7 @@ public class MovingPlatform : MonoBehaviour {
     public void MoveForward() {
         positionIndex += 1; //sets the index of the destination position in the List positions3d
         movementState = State.MovingForward;
-        animator.SetBool("Moving", true);
+        if (animator) animator.SetBool("Moving", true);
     }
 
     /**
@@ -149,6 +149,6 @@ public class MovingPlatform : MonoBehaviour {
     public void MoveBack() {
         positionIndex -= 1; //sets the index of the destination position in the List positions3d
         movementState = State.MovingBack;
-        animator.SetBool("Moving", true);
+        if (animator) animator.SetBool("Moving", true);
     }
 }

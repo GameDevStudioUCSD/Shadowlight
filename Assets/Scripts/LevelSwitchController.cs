@@ -32,9 +32,9 @@ public class LevelSwitchController : MonoBehaviour {
     Bounds lightPlayerBounds = Globals.lightPlayer.GetComponent<Collider2D>().bounds;
     Bounds shadowPlayerBounds = Globals.shadowPlayer.GetComponent<Collider2D>().bounds;
 
-    // This checks to make sure that the character is completely inside the
-    // door's collider.
-    if (!hasLoaded && lightDoorBounds.Contains(lightPlayerBounds.min)
+        // This checks to make sure that the character is completely inside the
+        // door's collider.
+        if (!hasLoaded && lightDoorBounds.Contains(lightPlayerBounds.min)
       && lightDoorBounds.Contains(lightPlayerBounds.max)
       && shadowDoorBounds.Contains(shadowPlayerBounds.min)
       && shadowDoorBounds.Contains(shadowPlayerBounds.max)) {
