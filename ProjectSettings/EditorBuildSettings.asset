@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/Scenes/AliTestLevel3.unity
     guid: 6ec9d1a364f6ede40a29ad5da54e1a86
   - enabled: 1
+    path: Assets/Scenes/ElevatorCastleLevel.unity
+    guid: 7c971f267d8904a10a7429ed59b12b96
+  - enabled: 1
     path: Assets/Scenes/Level_SpinToWin.unity
     guid: 338d501f00b2a8942a8b0e17bdcd7f8b
   - enabled: 1
