@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingScene: DemoLevel
-  endingScene: TitleScreen
+  endingScene: GardenLevel2
 --- !u!4 &1802739675 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4762203243581220, guid: e3e984b76d5c24145bd5680fafb0a9d6,

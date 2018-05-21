@@ -12,7 +12,7 @@ public class Singleton : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null && instance.startingScene == this.startingScene)
         {
             Destroy(gameObject);
         }
@@ -22,6 +22,7 @@ public class Singleton : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
+
     void OnEnable()
     { 
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
@@ -34,7 +35,7 @@ public class Singleton : MonoBehaviour
         {
             if (audio.isPlaying)
             {
-                audio.Stop();
+                Destroy(gameObject);
             }
         }
 

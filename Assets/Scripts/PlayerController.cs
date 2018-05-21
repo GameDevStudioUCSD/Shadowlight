@@ -101,6 +101,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Quickly change scenes for debugging purposes
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+        }
+
         if (!inputHorizontal.Equals(""))
         {
 
