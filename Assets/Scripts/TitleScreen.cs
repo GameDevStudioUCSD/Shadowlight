@@ -9,6 +9,6 @@ public class TitleScreen : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) SceneManager.LoadScene(nextScene);
+        if (Input.GetButtonDown("Next")) SceneManager.LoadScene(nextScene);
     }
 }
