@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
     // The script from the interactable object
     private Interactable interactableScript = null;
 
-    private GrowingPlant plant = null;
+    private GrowingPlant plantScript = null;
+    private bool canClimb = false;
     private bool isClimbing = false;
 
     private ContactFilter2D jumpRaycastFilter;
@@ -142,14 +143,18 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            // Climbing action
-            ClimbCheck(); 
-            Climb(transform.position.y);
+            // Climbing Key
+            if(Input.GetButtonDown(inputClimbUp) && canClimb) {
+                am.SetBool("climbing", true);
+            }
 
             // Reset Key
             if (Input.GetKeyDown(KeyCode.R)) Reload();
 
-            if (!am.GetBool("climbing"))
+            if (am.GetBool("climbing")) {
+                Climb(transform.position.y);
+            }
+            else
             {
                 am.SetBool("moving", tmpVelocity.x != 0);
                 am.SetFloat("yVelocity", tmpVelocity.y);
@@ -164,22 +169,20 @@ public class PlayerController : MonoBehaviour
     }
 
     /** Determine if player should be climbing a plant */
-    private void ClimbCheck()
+  /*  private void ClimbCheck()
     {
         float startY = transform.position.y;
-        if (plant != null && Input.GetButtonDown(inputInteract) && rb2d.velocity.y == 0 && rb2d.velocity.y > -0.0001 && !am.GetBool("jump"))
+        if (plantScript != null && Input.GetButtonDown(inputJump) && rb2d.velocity.y == 0 && rb2d.velocity.y > -0.0001 && !am.GetBool("jump"))
         {
             isClimbing = true;
             am.SetBool("climbing", isClimbing);
         }
 
-    }
+    }*/
 
     /** Climb a plant */
     private void Climb(float startY)
     {
-        if (plant != null && isClimbing)
-        {
             rb2d.gravityScale = 0.0f;
 
             // Move up the plant
@@ -197,19 +200,18 @@ public class PlayerController : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
                 }
                 // Get off the plant and stop climbing
-                if (Input.GetButton(inputHorizontal))
+          /*      if (Input.GetButton(inputHorizontal))
                 {
                     isClimbing = false;
                     am.SetBool("climbing", isClimbing);
                     am.SetBool("climbing-motion", false);
-                }
+                }*/
             }
             // Pausing while climbing the plant
             else
             {
                 am.SetBool("climbing-motion", false);
             }
-        }
     }
 
     /** Checks if there is ground underneath the object */
@@ -283,11 +285,15 @@ public class PlayerController : MonoBehaviour
             interactableScript = interactable;
         }
 
-        GrowingPlant plantObject = collision.GetComponent<GrowingPlant>();
+        /* GrowingPlant plantObject = collision.GetComponent<GrowingPlant>();
 
-        if (plantObject != null)
-        {
-            plant = plantObject;
+         if (plantObject != null)
+         {
+             plant = plantObject;
+         }*/
+        GrowingPlant plantScript = collision.GetComponent<GrowingPlant>();
+        if(plantScript != null) {
+            canClimb = true;
         }
     }
 
@@ -310,13 +316,13 @@ public class PlayerController : MonoBehaviour
             {
                 am.SetBool("climbing", false);
                 rb2d.gravityScale = 1.0f;
-                plant = null;
+                plantScript = null;
             }
             else if(Input.GetButton(inputJump) && Input.GetButtonDown(inputHorizontal))
             {
                 // Don't stop climbing immediately if exiting from the top of plant
                 rb2d.gravityScale = 1.0f;
-                plant = null;
+                plantScript = null;
             }
         }
     }
