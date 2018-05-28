@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour {
     private List<Vector3> positions3d; //a list of 3D positions generated from the 2D positions by Start() that is used internally
     private int positionIndex = 0; //the index of the position in the List that the platform is heading toward while moving, or the last it touched if stopped
 
-    public float moveSpeed = 0.1f; //the distance the platform moves each frame
+    public float moveSpeed = 3f; //the distance the platform moves each second
     public float loopWaitTime = 3f; //time the platform waits between loop directions
     private float loopTimer = 0f; //time remaining before the waiting platform starts moving again
 
@@ -50,13 +50,13 @@ public class MovingPlatform : MonoBehaviour {
 
         if (movementState == State.MovingForward) {
             //moves the platform towards the target position in the List
-            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed * Time.deltaTime);
             //if the platform has reached the target position, move on to the next
             if (transform.position.Equals(positions3d[positionIndex])) positionIndex += 1;
         }
         else if (movementState == State.MovingBack) {
             //moves the platform towards the target position in the List
-            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed * Time.deltaTime);
             //if the platform has reached the target position, move on to the next
             if (transform.position.Equals(positions3d[positionIndex])) positionIndex -= 1;
         }
