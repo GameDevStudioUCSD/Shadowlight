@@ -16,10 +16,12 @@ public class Lever : MonoBehaviour {
     private Animator animator = null;
     public bool startNoAction = false;
     private bool left = true;
+    private AudioSource slide;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        slide = GetComponent<AudioSource>();
         // Should not be null because of the RequireComponent attribute.
         Assert.IsNotNull(animator, name + " requires an Animator component.");
     }
@@ -51,6 +53,7 @@ public class Lever : MonoBehaviour {
     public void Toggle()
     {
         // If toggled left, switch to right
+        slide.Play();
         if(left)
         {
             rightMode.Invoke();

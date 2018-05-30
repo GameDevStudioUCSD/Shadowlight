@@ -23,9 +23,12 @@ public class Button : MonoBehaviour {
     }
 	
     private void OnTriggerEnter2D(Collider2D other) {
-		pushed = true;
-		buttonPressed.Invoke ();
+        if (!pushed) {
+            pushed = true;
+            buttonPressed.Invoke();
+            GetComponent<AudioSource>().Play();
 
-	    renderer.sprite = pushedSprite;
+            renderer.sprite = pushedSprite;
+        }
 	}
 }
