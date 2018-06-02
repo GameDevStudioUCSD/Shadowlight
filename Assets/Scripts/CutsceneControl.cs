@@ -9,6 +9,7 @@ public class CutsceneControl : MonoBehaviour {
 	private List<Fader> bookContentFaders;
 	private int pageNumber;
 	public Animator bookFrameAnim;
+	private bool stopped;
 
 
 	//private List<GameObject> bookContents;
@@ -26,12 +27,13 @@ public class CutsceneControl : MonoBehaviour {
 		}
 		Fader firstFader = bookContentFaders[0];
 		firstFader.FadeIn ();
+		stopped = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Next")) {
-			if (pageNumber < 6) {
+        if (Input.GetButtonDown ("Next") && stopped) {
+			if (pageNumber < 3) {
 				StartCoroutine(TurnPage ());
 			} else {
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -41,9 +43,11 @@ public class CutsceneControl : MonoBehaviour {
 
 	private IEnumerator TurnPage() {
 		// fade out current image
+		stopped = false;
 		Fader theFader = bookContentFaders[pageNumber];
 		theFader.FadeOut ();
 		yield return new WaitForSeconds (0.5f);
+
 
 		// turn page
 		pageNumber++;
@@ -53,5 +57,7 @@ public class CutsceneControl : MonoBehaviour {
 
 		// fade in new image
 		bookContentFaders[pageNumber].FadeIn();
+		yield return new WaitForSeconds (0.5f);
+		stopped = true;
 	}
 }
