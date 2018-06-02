@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     // Amount of force needed to kill the player by crushing
     private float crushThreshold = 55000f;
 
+    private Vector2 tmpVelocity;
+
     private Animator am = null;
     private BoxCollider2D bc2d = null;
     private Rigidbody2D rb2d = null;
@@ -57,7 +59,8 @@ public class PlayerController : MonoBehaviour
     // The script from the interactable object
     private Interactable interactableScript = null;
 
-    private GrowingPlant plant = null;
+    private GrowingPlant plantScript = null;
+    private bool canClimb = false;
     private bool isClimbing = false;
 
     private ContactFilter2D jumpRaycastFilter;
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour
         if (!inputHorizontal.Equals(""))
         {
 
-            Vector2 tmpVelocity = rb2d.velocity;
+            tmpVelocity = rb2d.velocity;
 
             // Horizontal movement.
             // TODO 2018-01-20: Maybe we can do gradual acceleration movement.
@@ -138,26 +141,29 @@ public class PlayerController : MonoBehaviour
             // Add a feeling of inertia
             if (Input.GetButtonDown(inputJump))
             {
-                if (IsGrounded() && !am.GetBool("climbing"))
+                if (canClimb)   // Start Climbing
+                {
+                    tmpVelocity.y = 0;
+                    isClimbing = true;
+                }
+                else if (IsGrounded() && !isClimbing)
                 {
                     tmpVelocity.y = jumpForce;
                     am.SetTrigger("jump");
                 }
             }
 
-            // Climbing action
-            ClimbCheck(); 
-            Climb(transform.position.y);
+            // Climb Movement
+            if (isClimbing) {
+              Climb(transform.position.y);
+            }
+
+            am.SetFloat("yVelocity", tmpVelocity.y);
+            am.SetBool("moving", tmpVelocity.x != 0);
+            rb2d.velocity = tmpVelocity;
 
             // Reset Key
             if (Input.GetKeyDown(KeyCode.R)) Reload();
-
-            if (!am.GetBool("climbing"))
-            {
-                am.SetBool("moving", tmpVelocity.x != 0);
-                am.SetFloat("yVelocity", tmpVelocity.y);
-                rb2d.velocity = tmpVelocity;
-            }
 
             // Check if player can interact with object
             if (interactableScript != null && Input.GetButtonDown(inputInteract)) {
@@ -166,30 +172,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /** Determine if player should be climbing a plant */
-    private void ClimbCheck()
-    {
-        float startY = transform.position.y;
-        if (plant != null && Input.GetButtonDown(inputInteract) && rb2d.velocity.y == 0 && rb2d.velocity.y > -0.0001 && !am.GetBool("jump"))
-        {
-            isClimbing = true;
-            am.SetBool("climbing", isClimbing);
-        }
-
-    }
-
     /** Climb a plant */
     private void Climb(float startY)
     {
-        if (plant != null && isClimbing)
+        am.SetBool("climbing", true);
+        rb2d.gravityScale = 0;
+        // Move up the plant
+        if (canClimb)
         {
-            rb2d.gravityScale = 0.0f;
-
-            // Move up the plant
             if (Input.GetButton(inputClimbUp))
             {
                 am.SetBool("climbing-motion", true);
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.04f, transform.position.z);
             }
             else if (Input.GetButton(inputClimbDown))
             {
@@ -197,20 +191,28 @@ public class PlayerController : MonoBehaviour
                 if (transform.position.y >= startY)
                 {
                     am.SetBool("climbing-motion", true);
-                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
-                }
-                // Get off the plant and stop climbing
-                if (Input.GetButton(inputHorizontal))
-                {
-                    isClimbing = false;
-                    am.SetBool("climbing", isClimbing);
-                    am.SetBool("climbing-motion", false);
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.03f, transform.position.z);
                 }
             }
             // Pausing while climbing the plant
             else
             {
                 am.SetBool("climbing-motion", false);
+            }
+        }
+        else {
+            am.SetBool("climbing-motion", false);
+            if (Input.GetButton(inputHorizontal))
+            {
+                // Jump and get off plant
+                isClimbing = false;
+
+                rb2d.gravityScale = 1.0f;
+                am.SetBool("climbing", isClimbing);
+                am.SetBool("climbing-motion", false);
+                tmpVelocity.y = 10;
+                am.SetTrigger("jump");
+                am.SetFloat("yVelocity", tmpVelocity.y);
             }
         }
     }
@@ -289,11 +291,15 @@ public class PlayerController : MonoBehaviour
             interactableScript = interactable;
         }
 
-        GrowingPlant plantObject = collision.GetComponent<GrowingPlant>();
+        plantScript = collision.GetComponent<GrowingPlant>();
+    }
 
-        if (plantObject != null)
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        // To check if the plant is fully grown before player can climb on it
+        if (plantScript != null && plantScript.finishedGrowing)
         {
-            plant = plantObject;
+            canClimb = true;
         }
     }
 
@@ -309,21 +315,7 @@ public class PlayerController : MonoBehaviour
         // Exit climbing
         if (collision.GetComponent<GrowingPlant>() != null)
         {
-            isClimbing = false;
-            am.SetBool("climbing-motion", false);
-
-            if (!Input.GetButton(inputJump))
-            {
-                am.SetBool("climbing", false);
-                rb2d.gravityScale = 1.0f;
-                plant = null;
-            }
-            else if(Input.GetButton(inputJump) && Input.GetButtonDown(inputHorizontal))
-            {
-                // Don't stop climbing immediately if exiting from the top of plant
-                rb2d.gravityScale = 1.0f;
-                plant = null;
-            }
+            canClimb = false;
         }
     }
 }

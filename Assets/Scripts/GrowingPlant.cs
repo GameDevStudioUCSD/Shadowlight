@@ -8,14 +8,11 @@ using UnityEngine;
 public class GrowingPlant : MonoBehaviour {
     Animator anim;
     public bool inRange;
+    public bool finishedGrowing = false;
 
 	void Start () {
         anim = GetComponent<Animator>();
     }
-	
-	void Update () {
-		
-	}
 
     /**
      * Grows the plant when light is touching it
@@ -39,5 +36,13 @@ public class GrowingPlant : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         inRange = true;
+    }
+
+    /** 
+     * Function to indicate the plant has finished growing, so that player
+     * can climb on it.
+     */
+    public void finishGrowing() {
+        finishedGrowing = true;
     }
 }

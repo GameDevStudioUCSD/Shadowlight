@@ -50,13 +50,13 @@ public class MovingPlatform : MonoBehaviour {
 
         if (movementState == State.MovingForward) {
             //moves the platform towards the target position in the List
-            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed * Time.deltaTime);
             //if the platform has reached the target position, move on to the next
             if (transform.position.Equals(positions3d[positionIndex])) positionIndex += 1;
         }
         else if (movementState == State.MovingBack) {
             //moves the platform towards the target position in the List
-            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed * Time.deltaTime);
             //if the platform has reached the target position, move on to the next
             if (transform.position.Equals(positions3d[positionIndex])) positionIndex -= 1;
         }
