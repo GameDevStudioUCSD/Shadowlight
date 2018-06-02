@@ -5,16 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelSwitchController : MonoBehaviour {
 
-
-  public string nextScene; // The name of the next level scene
-  public GameObject lightPlayer;
-  public GameObject shadowPlayer;
-
-  private Bounds lightDoorBounds;
-  private Bounds shadowDoorBounds;
+    private Bounds lightDoorBounds;
+    private Bounds shadowDoorBounds;
     private GameObject lightDoor;
     private GameObject shadowDoor;
-
+    private bool hasLoaded = false;
+    
   void Start() {
 
     // Get the position of door objects
@@ -33,25 +29,30 @@ public class LevelSwitchController : MonoBehaviour {
     // the switching level into separate component. That way, the component can
     // check the character bound on OnCollider*2D functions.
 
-    Bounds lightPlayerBounds = lightPlayer.GetComponent<Collider2D>().bounds;
-    Bounds shadowPlayerBounds = shadowPlayer.GetComponent<Collider2D>().bounds;
+    Bounds lightPlayerBounds = Globals.lightPlayer.GetComponent<Collider2D>().bounds;
+    Bounds shadowPlayerBounds = Globals.shadowPlayer.GetComponent<Collider2D>().bounds;
 
-    // This checks to make sure that the character is completely inside the
-    // door's collider.
-    if (lightDoorBounds.Contains(lightPlayerBounds.min)
+        // This checks to make sure that the character is completely inside the
+        // door's collider.
+        if (!hasLoaded && lightDoorBounds.Contains(lightPlayerBounds.min)
       && lightDoorBounds.Contains(lightPlayerBounds.max)
       && shadowDoorBounds.Contains(shadowPlayerBounds.min)
       && shadowDoorBounds.Contains(shadowPlayerBounds.max)) {
             lightDoor.GetComponent<Animator>().SetTrigger("Open");
             shadowDoor.GetComponent<Animator>().SetTrigger("Open");
+            lightDoor.GetComponent<AudioSource>().Play();
+            hasLoaded = true;
             //Globals.lightPlayer.GetComponent<PlayerController>().enabled = false;
             //Globals.shadowPlayer.GetComponent<PlayerController>().enabled = false;
             StartCoroutine("LoadScene", 0.5f);
+        }
     }
-  }
 
     IEnumerator LoadScene(float delay) {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(nextScene);
+        int buildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (buildIndex < SceneManager.sceneCountInBuildSettings) {
+            SceneManager.LoadScene(buildIndex);
+        }
     }
 }

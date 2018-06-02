@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour {
     private List<Vector3> positions3d; //a list of 3D positions generated from the 2D positions by Start() that is used internally
     private int positionIndex = 0; //the index of the position in the List that the platform is heading toward while moving, or the last it touched if stopped
 
-    public float moveSpeed = 0.1f; //the distance the platform moves each frame
+    public float moveSpeed = 3.0f; //the distance the platform moves each frame
     public float loopWaitTime = 3f; //time the platform waits between loop directions
     private float loopTimer = 0f; //time remaining before the waiting platform starts moving again
 
@@ -16,10 +16,18 @@ public class MovingPlatform : MonoBehaviour {
     public State movementState = State.Stopped; //how platform is currently moving
     public bool looping = false; //turn on to make the platform move back and forth
     private bool nextMoveIsBack = false;
+    public GameObject gear;
     private Animator animator;
 
+	public GameObject sliderCircle;
+	public GameObject slider;
+
+    /**
+     * Makes the gear a constant size, regardless of the scaling of the parent
+     */
+    
     void Start () {
-        animator = gameObject.GetComponent<Animator>();
+        animator = gear.GetComponent<Animator>();
 
         positions3d = new List<Vector3>();
         positions3d.Add(transform.position); //starting position is part of the List
@@ -27,6 +35,14 @@ public class MovingPlatform : MonoBehaviour {
         foreach (Vector2 position in positions) {
             positions3d.Add(position);
         }
+
+		foreach (Vector3 position3d in positions3d) {
+			Instantiate (sliderCircle, position3d, Quaternion.identity, null);
+		}
+
+		LineRenderer lr = slider.GetComponent<LineRenderer> ();
+		lr.positionCount = positions3d.Count;
+		lr.SetPositions (positions3d.ToArray());
     }
 	
 	void Update () {
@@ -34,13 +50,13 @@ public class MovingPlatform : MonoBehaviour {
 
         if (movementState == State.MovingForward) {
             //moves the platform towards the target position in the List
-            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed*Time.deltaTime);
             //if the platform has reached the target position, move on to the next
             if (transform.position.Equals(positions3d[positionIndex])) positionIndex += 1;
         }
         else if (movementState == State.MovingBack) {
             //moves the platform towards the target position in the List
-            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, positions3d[positionIndex], moveSpeed*Time.deltaTime);
             //if the platform has reached the target position, move on to the next
             if (transform.position.Equals(positions3d[positionIndex])) positionIndex -= 1;
         }
@@ -66,11 +82,11 @@ public class MovingPlatform : MonoBehaviour {
                 if (looping) {
                     loopTimer = loopWaitTime; //reset wait timer
                     movementState = State.Waiting; //wait before moving back
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
                 else {
                     movementState = State.Stopped; //stop moving
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
             }
         }
@@ -81,11 +97,11 @@ public class MovingPlatform : MonoBehaviour {
                 if (looping) {
                     loopTimer = loopWaitTime; //reset wait timer
                     movementState = State.Waiting; //wait before moving back
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
                 else {
                     movementState = State.Stopped; //stop moving
-                    animator.SetBool("Moving", false);
+                    if (animator) animator.SetBool("Moving", false);
                 }
             }
         }
@@ -113,7 +129,7 @@ public class MovingPlatform : MonoBehaviour {
         if (movementState == State.MovingForward) positionIndex -= 1;
         else if (movementState == State.MovingBack) positionIndex += 1;
         movementState = State.Stopped;
-        animator.SetBool("Moving", false);
+        if (animator) animator.SetBool("Moving", false);
     }
 
     /**
@@ -123,7 +139,7 @@ public class MovingPlatform : MonoBehaviour {
     public void MoveForward() {
         positionIndex += 1; //sets the index of the destination position in the List positions3d
         movementState = State.MovingForward;
-        animator.SetBool("Moving", true);
+        if (animator) animator.SetBool("Moving", true);
     }
 
     /**
@@ -133,6 +149,6 @@ public class MovingPlatform : MonoBehaviour {
     public void MoveBack() {
         positionIndex -= 1; //sets the index of the destination position in the List positions3d
         movementState = State.MovingBack;
-        animator.SetBool("Moving", true);
+        if (animator) animator.SetBool("Moving", true);
     }
 }

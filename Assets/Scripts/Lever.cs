@@ -14,25 +14,35 @@ public class Lever : MonoBehaviour {
     public UnityEvent leftMode = null;
     public UnityEvent rightMode = null;
     private Animator animator = null;
+    public bool startNoAction = false;
     private bool left = true;
+    private AudioSource slide;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        slide = GetComponent<AudioSource>();
         // Should not be null because of the RequireComponent attribute.
         Assert.IsNotNull(animator, name + " requires an Animator component.");
     }
 
     private void OnEnable()
     {
-        // Invoke the event associated with the default state of the lever
-        if (left)
+        if (!startNoAction)
         {
-            leftMode.Invoke();
+            // Invoke the event associated with the default state of the lever
+            if (left)
+            {
+                leftMode.Invoke();
+            }
+            else
+            {
+                rightMode.Invoke();
+            }
         }
         else
         {
-            rightMode.Invoke();
+            startNoAction = !startNoAction;
         }
     }
 
@@ -43,9 +53,9 @@ public class Lever : MonoBehaviour {
     public void Toggle()
     {
         // If toggled left, switch to right
+        slide.Play();
         if(left)
         {
-
             rightMode.Invoke();
             animator.Play("ToggleRight");
         }
