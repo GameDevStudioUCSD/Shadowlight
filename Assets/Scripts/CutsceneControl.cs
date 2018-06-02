@@ -32,8 +32,8 @@ public class CutsceneControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Next") && stopped) {
-			if (pageNumber < 6) {
+        if (Input.GetButtonDown ("Next") && stopped) {
+			if (pageNumber < 3) {
 				StartCoroutine(TurnPage ());
 			} else {
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
