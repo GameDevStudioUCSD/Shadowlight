@@ -39,8 +39,11 @@ public class PlayerController : MonoBehaviour
     // The strength of the character's jump
     public float jumpForce = 7.0f;
 
+    // The sound the player makes when killed by crushing
+    public AudioClip crushSound;
+
     // Amount of force needed to kill the player by crushing
-    private float crushThreshold = 1000f;
+    private float crushThreshold = 55000f;
 
     private Vector2 tmpVelocity;
 
@@ -274,7 +277,10 @@ public class PlayerController : MonoBehaviour
     {
         // If the player experiences a huge force from above, this kills them.
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-        if (rb && -rb.velocity.y * rb.mass >= crushThreshold) Die();
+        if (rb && -rb.velocity.y * rb.mass >= crushThreshold) {
+            GetComponent<AudioSource>().clip = crushSound;
+            Die();
+        }
 
         Interactable interactable = collision.GetComponent<Interactable>();
 

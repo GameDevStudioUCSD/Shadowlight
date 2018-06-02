@@ -138,16 +138,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 47293829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 234, y: -135, z: 0}
+  m_LocalPosition: {x: 195.2, y: 104.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1763559100}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 234, y: -135}
-  m_SizeDelta: {x: 279.2, y: 38.2}
+  m_AnchoredPosition: {x: 195.2, y: 104.3}
+  m_SizeDelta: {x: 240.35, y: 195.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &47293831
 MonoBehaviour:
@@ -176,13 +176,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: But they didn't want to grow up
+  m_Text: 'The King had a plan. If the Prince wanted to become one entity again, he
+    would have to complete various trials he set up to teach his son about cooperation
+    and harmony. '
 --- !u!222 &47293832
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -293,7 +295,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1770721228925944, guid: c6d991f4d376e6a40aae4f3225e89657, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114906834983184488, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
@@ -304,18 +306,20 @@ Prefab:
     - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_Text
-      value: To enforce his punishment, the King exiled his son from the castle until
-        he could get his crap back together
+      value: '"Enough!" cried the King. Sick of his son''s endless bickering and insolence,
+        the King exiled both halves of the Prince from the castle, informing them
+        that if they ever wanted to re-enter, they would have to work together to
+        complete the trials.'
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -128
+      value: -142.09999
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -128
+      value: -142.1
       objectReference: {fileID: 0}
     - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
@@ -330,17 +334,37 @@ Prefab:
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -144.7
+      value: -111.00001
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -144.7
+      value: -111
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 57.5
+      value: 112.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 56.199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 56.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 254.41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6d991f4d376e6a40aae4f3225e89657, type: 2}
@@ -662,6 +686,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &891677819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1134680602705810, guid: c6d991f4d376e6a40aae4f3225e89657,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 891677820}
+  - component: {fileID: 891677822}
+  - component: {fileID: 891677821}
+  m_Layer: 5
+  m_Name: Text (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &891677820
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891677819}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 195.20007, y: -191.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1763559100}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 195.20007, y: -191.8}
+  m_SizeDelta: {x: 240.35, y: 195.78}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &891677821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891677819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: As soon as the King began to explain the trials, however, his lesson was
+    interrupted by a cry of "STOP!" followed by a show of Light harassing Shadow with
+    his new power.
+--- !u!222 &891677822
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222437850498939004, guid: c6d991f4d376e6a40aae4f3225e89657,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891677819}
 --- !u!1001 &977148498
 Prefab:
   m_ObjectHideFlags: 0
@@ -776,17 +880,18 @@ Prefab:
     - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_Text
-      value: 'To split the prince into two spiritual halves: Shadow and Light.'
+      value: 'Dazed after being blasted by the magic, the Prince took a moment to
+        realize that he had split into two halves: Shadow and Light.'
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -128
+      value: -139.46
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -128
+      value: -139.46
       objectReference: {fileID: 0}
     - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
@@ -797,6 +902,41 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -144
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -142.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -142.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 249.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6d991f4d376e6a40aae4f3225e89657, type: 2}
@@ -904,6 +1044,67 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1770721228925944, guid: c6d991f4d376e6a40aae4f3225e89657, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_Text
+      value: Once upon a time, there was a spoiled and arrogant Prince. Filled with
+        selfishness and indulgence, the Prince cared for no one but himself.
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 196.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 196.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -121.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -121.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 192.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 192.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 269.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 65.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -935,7 +1136,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065777120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 264, y: -135, z: 0}
+  m_LocalPosition: {x: 195.8, y: -124.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1097024004}
@@ -943,8 +1144,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 264, y: -135}
-  m_SizeDelta: {x: 279.2, y: 38.2}
+  m_AnchoredPosition: {x: 195.8, y: -124.8}
+  m_SizeDelta: {x: 266.81, y: 76.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1065777122
 MonoBehaviour:
@@ -973,13 +1174,14 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: He used a magic staff
+  m_Text: Determined to teach his son a lesson, the King decided to use his magical
+    cane, an old family heirloom, to blast a magic beam at the Prince.
 --- !u!222 &1065777123
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1023,7 +1225,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1193982277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 192, y: 27, z: 0}
+  m_LocalPosition: {x: 192, y: 77.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 279168582}
@@ -1031,7 +1233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 192, y: 27}
+  m_AnchoredPosition: {x: 192, y: 77.4}
   m_SizeDelta: {x: 285.59998, y: 253.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193982279
@@ -1095,7 +1297,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1365169867}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 199, y: 27, z: 0}
+  m_LocalPosition: {x: 199, y: 58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1097024004}
@@ -1103,7 +1305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 199, y: 27}
+  m_AnchoredPosition: {x: 199, y: 58}
   m_SizeDelta: {x: 285.59998, y: 253.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365169869
@@ -1283,7 +1485,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1659858637}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 200, y: -134, z: 0}
+  m_LocalPosition: {x: 187.1, y: -121.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 279168582}
@@ -1291,8 +1493,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -134}
-  m_SizeDelta: {x: 225.5, y: 52.2}
+  m_AnchoredPosition: {x: 187.1, y: -121.6}
+  m_SizeDelta: {x: 247.55, y: 146.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659858639
 MonoBehaviour:
@@ -1321,14 +1523,16 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: They didn't want to be homeless so they decided to work together to retake
-    the throne
+  m_Text: '"Curse you, old man!" Light shouted. While still grumbling to themselves,
+    Shadow and Light picked themselves up and stared at their former home. "Come on,
+    let''s just hurry up and finish these dumb trials," muttered Shadow reluctantly,
+    and thus they began their journey to retake the throne.'
 --- !u!222 &1659858640
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1464,7 +1668,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1770721228925944, guid: c6d991f4d376e6a40aae4f3225e89657, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114906834983184488, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
@@ -1475,27 +1679,64 @@ Prefab:
     - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_Text
-      value: His dad wanted to teach him a lesson
+      value: The Prince's father, the King, was filled with concern over his son's
+        tendencies. He wished for his son to mature and become a suitable successor
+        to the throne. However, the petulant Prince refused to listen to his father.
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -118
+      value: -138.4
       objectReference: {fileID: 0}
     - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -118
+      value: -138.4
       objectReference: {fileID: 0}
     - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -129
+      value: -136.1
       objectReference: {fileID: 0}
     - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -129
+      value: -136.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -119.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -119.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 250.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236394608267016, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 106.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 51.800003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650820152429088, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 51.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114683162049628510, guid: c6d991f4d376e6a40aae4f3225e89657,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6d991f4d376e6a40aae4f3225e89657, type: 2}
@@ -1526,15 +1767,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2072357145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 192, y: 27, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 192, y: 14.5, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1763559100}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 192, y: 27}
+  m_AnchoredPosition: {x: 192, y: 14.5}
   m_SizeDelta: {x: 285.59998, y: 253.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072357147
