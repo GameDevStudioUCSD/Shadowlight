@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7.0f;
 
     // Amount of force needed to kill the player by crushing
-    private float crushThreshold = 1000f;
+    private float crushThreshold = 55000f;
 
     private Animator am = null;
     private BoxCollider2D bc2d = null;
