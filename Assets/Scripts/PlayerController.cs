@@ -174,25 +174,26 @@ public class PlayerController : MonoBehaviour
         am.SetBool("climbing", true);
         rb2d.gravityScale = 0;
         print("climbing");
-        // Move up the plant
-        if (Input.GetButton(inputClimbUp))
-        {
-            am.SetBool("climbing-motion", true);
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z);
-        }
-        else if (Input.GetButton(inputClimbDown))
-        {
-            // Move down the plant
-            if (transform.position.y >= startY)
+            // Move up the plant
+            if (Input.GetButton(inputClimbUp))
             {
                 am.SetBool("climbing-motion", true);
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z);
             }
-        // Pausing while climbing the plant
-        else
-        {
-            am.SetBool("climbing-motion", false);
-        }
+            else if (Input.GetButton(inputClimbDown))
+            {
+                // Move down the plant
+                if (transform.position.y >= startY)
+                {
+                    am.SetBool("climbing-motion", true);
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
+                }
+            }
+            // Pausing while climbing the plant
+            else
+            {
+                am.SetBool("climbing-motion", false);
+            }
     }
 
     /** Checks if there is ground underneath the object */
