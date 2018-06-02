@@ -136,16 +136,16 @@ public class PlayerController : MonoBehaviour
             // Add a feeling of inertia
             if (Input.GetButtonDown(inputJump))
             {
-                if (IsGrounded() && !isClimbing)
-                {
-                    print("jumped");
-                    tmpVelocity.y = jumpForce;
-                    am.SetTrigger("jump");
-                }
                 if (canClimb)   // Start Climbing
                 {
                     tmpVelocity.y = 0;
                     isClimbing = true;
+                }
+                else if (IsGrounded() && !isClimbing)
+                {
+                    print("jumped");
+                    tmpVelocity.y = jumpForce;
+                    am.SetTrigger("jump");
                 }
             }
 
