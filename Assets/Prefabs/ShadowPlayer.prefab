@@ -273,6 +273,7 @@ MonoBehaviour:
   lightOrShadow: 1
   horizontalSpeed: 5
   jumpForce: 13
+  crushSound: {fileID: 8300000, guid: ca3c035a417ca15408c1a85c97191e85, type: 3}
 --- !u!212 &212221511157830638
 SpriteRenderer:
   m_ObjectHideFlags: 1
