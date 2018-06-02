@@ -265,8 +265,14 @@ public class PlayerController : MonoBehaviour
             interactableScript = interactable;
         }
 
-        GrowingPlant plantScript = collision.GetComponent<GrowingPlant>();
-        if(plantScript != null && plantScript.finishedGrowing) {
+        plantScript = collision.GetComponent<GrowingPlant>();
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        // To check if the plant is fully grown before player can climb on it
+        if (plantScript != null && plantScript.finishedGrowing)
+        {
             canClimb = true;
         }
     }
