@@ -326,4 +326,12 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void Push() {
+        am.SetBool("pushing", true);
+    }
+
+    public void StopPushing() {
+        am.SetBool("pushing", false);
+    }
 }
