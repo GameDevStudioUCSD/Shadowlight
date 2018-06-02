@@ -143,7 +143,6 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (IsGrounded() && !isClimbing)
                 {
-                    print("jumped");
                     tmpVelocity.y = jumpForce;
                     am.SetTrigger("jump");
                 }
@@ -173,7 +172,6 @@ public class PlayerController : MonoBehaviour
     {
         am.SetBool("climbing", true);
         rb2d.gravityScale = 0;
-        print("climbing");
             // Move up the plant
             if (Input.GetButton(inputClimbUp))
             {
@@ -268,7 +266,7 @@ public class PlayerController : MonoBehaviour
         }
 
         GrowingPlant plantScript = collision.GetComponent<GrowingPlant>();
-        if(plantScript != null) {
+        if(plantScript != null && plantScript.finishedGrowing) {
             canClimb = true;
         }
     }
