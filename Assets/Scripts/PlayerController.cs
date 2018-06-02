@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     // Amount of force needed to kill the player by crushing
     private float crushThreshold = 1000f;
 
+    private Vector2 tmpVelocity;
+
     private Animator am = null;
     private BoxCollider2D bc2d = null;
     private Rigidbody2D rb2d = null;
@@ -57,7 +59,6 @@ public class PlayerController : MonoBehaviour
     private GrowingPlant plantScript = null;
     private bool canClimb = false;
     private bool isClimbing = false;
-    private bool atTop = false;
 
     private ContactFilter2D jumpRaycastFilter;
     private RaycastHit2D[] jumpRaycastResult = null;
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (!inputHorizontal.Equals(""))
         {
 
-            Vector2 tmpVelocity = rb2d.velocity;
+            tmpVelocity = rb2d.velocity;
 
             // Horizontal movement.
             // TODO 2018-01-20: Maybe we can do gradual acceleration movement.
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour
                     tmpVelocity.y = 0;
                     isClimbing = true;
                 }
-                else if (atTop || (IsGrounded() && !isClimbing))
+                else if (IsGrounded() && !isClimbing)
                 {
                     tmpVelocity.y = jumpForce;
                     am.SetTrigger("jump");
@@ -174,41 +175,42 @@ public class PlayerController : MonoBehaviour
         am.SetBool("climbing", true);
         rb2d.gravityScale = 0;
         // Move up the plant
-        if (Input.GetButton(inputClimbUp))
+        if (canClimb)
         {
-            if (canClimb)
+            if (Input.GetButton(inputClimbUp))
             {
                 am.SetBool("climbing-motion", true);
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.04f, transform.position.z);
             }
+            else if (Input.GetButton(inputClimbDown))
+            {
+                // Move down the plant
+                if (transform.position.y >= startY)
+                {
+                    am.SetBool("climbing-motion", true);
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.03f, transform.position.z);
+                }
+            }
+            // Pausing while climbing the plant
             else
             {
                 am.SetBool("climbing-motion", false);
-                atTop = true;
             }
         }
-        else if (Input.GetButton(inputClimbDown))
-        {
-            // Move down the plant
-            if (transform.position.y >= startY)
+        else {
+            am.SetBool("climbing-motion", false);
+            if (Input.GetButton(inputHorizontal))
             {
-                atTop = false;
-                am.SetBool("climbing-motion", true);
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
+                // Jump and get off plant
+                isClimbing = false;
+
+                rb2d.gravityScale = 1.0f;
+                am.SetBool("climbing", isClimbing);
+                am.SetBool("climbing-motion", false);
+                tmpVelocity.y = 10;
+                am.SetTrigger("jump");
+                am.SetFloat("yVelocity", tmpVelocity.y);
             }
-        }
-        // Pausing while climbing the plant
-        else
-        {
-            am.SetBool("climbing-motion", false);
-        }
-        if (atTop && Input.GetButtonDown(inputJump))
-        {
-            atTop = false;
-            isClimbing = false;
-            rb2d.gravityScale = 1.0f;
-            am.SetBool("climbing", isClimbing);
-            am.SetBool("climbing-motion", false);
         }
     }
 
