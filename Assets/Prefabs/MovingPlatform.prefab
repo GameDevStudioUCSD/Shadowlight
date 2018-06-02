@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positions: []
-  moveSpeed: 0.1
+  moveSpeed: 3
   loopWaitTime: 3
   movementState: 3
   looping: 1
