@@ -13,6 +13,7 @@ public class EntryDoor : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         sprite.enabled = true;
         anim = GetComponent<Animator>();
+        transform.parent = null;
 	}
 
     private void Update()
