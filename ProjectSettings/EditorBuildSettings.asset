@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SecondLevel.unity
     guid: 0c3906d15bf7d4c7f9965bd7e7289377
   - enabled: 1
+    path: Assets/Scenes/ThirdLevel.unity
+    guid: e6185edf511be4729baaafee2e5e1c40
+  - enabled: 1
     path: Assets/Scenes/AMystery.unity
     guid: 3eab3665a2372984c91866d93fad1dce
   - enabled: 1
