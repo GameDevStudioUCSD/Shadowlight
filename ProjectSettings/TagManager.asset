@@ -8,6 +8,9 @@ TagManager:
   - LightDoor
   - ShadowDoor
   - GameOverScreen
+  - Background
+  - Platform
+  - Wall
   layers:
   - Default
   - TransparentFX
