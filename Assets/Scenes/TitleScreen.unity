@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d36d3fc65f04cb1a079ebc79013ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: AMystery
+  nextScene: BeginningCutscene
 --- !u!1 &1957200439
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957200442}
   - component: {fileID: 1957200441}
+  - component: {fileID: 1957200440}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -390,6 +391,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1957200440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957200439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14cf8b2935f634df18578fb38739101b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingScene: TitleScreen
+  endingScene: FirstLevel
 --- !u!82 &1957200441
 AudioSource:
   m_ObjectHideFlags: 0

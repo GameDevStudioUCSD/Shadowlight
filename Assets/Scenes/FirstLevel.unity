@@ -1058,8 +1058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14cf8b2935f634df18578fb38739101b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingScene: DemoLevel
-  endingScene: TitleScreen
+  startingScene: FirstLevel
+  endingScene: UnsungHero
 --- !u!1001 &1766287238
 Prefab:
   m_ObjectHideFlags: 0
